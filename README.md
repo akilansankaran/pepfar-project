@@ -1,18 +1,13 @@
-# PEPFAR and Growth
+# PEPFAR and Growth Study
 
-This repository holds the data pipeline and analysis code for a study of how the President's
-Emergency Plan for AIDS Relief (PEPFAR) affected economic growth and individual economic
-expectations in countries affected by HIV/AIDS. The study begins from the country-level evidence
-of Crown et al. (2023) and Kates et al. (2026), who find growth gains in PEPFAR recipients using
-difference-in-differences designs, and replicates those estimates on a panel extended with recent
-data. It then asks through which channels the gains arose by tying them to the disease burden the
-program relieved, and it examines survey evidence on whether individuals' economic expectations
-shifted once the program began.
+This repository holds the data pipeline and analysis code for a study of how the President's Emergency Plan for AIDS Relief (PEPFAR) affected economic growth and individual economic expectations in countries affected by HIV/AIDS. 
 
-## Research question
+The study begins from the country-level evidence of Crown et al. (2023) and Kates et al. (2026), who find growth gains in PEPFAR recipients using
+difference-in-differences designs and then proceeds to replicate those estimates on a panel extended with recent
+data. We then ask which channels such gains arose from by tying them to the disease burden that the program itself received, and examine the resulting survey evidence on whether individuals' economic expectations shifted once the program began.
 
-How did the introduction of PEPFAR affect individual economic expectations and economic growth in
-countries affected by HIV/AIDS?
+Our fundamental research focus is the classification and determination of effects from the introduction of PEPFAR on individual economic expectations and economic growth in
+countries affected by HIV/AIDS.
 
 ## Components
 
@@ -49,6 +44,7 @@ ending the epidemic.
 
 ## Walkthrough
 
+The repository structure is as follows.
 ```
 data/            raw/ (Dropbox pointer, untracked), interim/, final/
 data_pull/       one script per unit of analysis that writes into data/raw
