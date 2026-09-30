@@ -73,6 +73,8 @@ to respondents and also collapses to country-round means.
 
 ## Running
 
+Execute the R files as follows:
+
 ```r
 source("setup.R")
 source("data_pull/pull_all_country_data.R")
