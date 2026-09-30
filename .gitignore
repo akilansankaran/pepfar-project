@@ -1,0 +1,24 @@
+# raw downloads live in Dropbox; only the pointer file is tracked
+data/raw/*
+!data/raw/README.md
+data/interim/*
+!data/interim/.gitkeep
+data/final/*
+!data/final/.gitkeep
+
+# R session and renv state
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+renv/library/
+renv/staging/
+renv/local/
+renv/python/
+
+# restricted IHME and Afrobarometer files must never be committed
+*.sav
+*.dta
+*.rds
+
+.DS_Store
