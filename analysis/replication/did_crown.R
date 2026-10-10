@@ -14,4 +14,27 @@ panel <- panel |>
 # ---- Regression 1: GDP per capita growth, all PEPFAR, no controls ----
 m1 <- feols(gdp_pc_growth ~ Time + grp_pepfar_any + Time:grp_pepfar_any,
             data = panel, cluster = ~iso3c)
-summary(m1)
+summary(m1) 
+# ---- Regression 2: GDP per capita growth, COP vs control, no controls ----
+# Keep only COP and comparison countries (drop other PEPFAR countries)
+panel_cop <- panel |>
+  filter(grp_pepfar_cop == 1 | grp_control == 1)
+
+m2 <- feols(gdp_pc_growth ~ Time + grp_pepfar_cop + Time:grp_pepfar_cop,
+            data = panel_cop, cluster = ~iso3c)
+summary(m2)
+
+# ---- The 11 baseline controls (Crown Table 1), measured before PEPFAR ----
+controls <- c("bl_gdp_pc", "bl_pop_total", "bl_life_exp", "bl_fertility",
+              "bl_urban_pct", "bl_sec_enroll_gross", "bl_hiv_prev",
+              "bl_donor_health_nonpepfar_pc", "bl_dom_hexp_pc_ppp",
+              "bl_wb_income", "bl_us_hiv_pre2004")
+
+# ---- Regression 3: GDP per capita growth, all PEPFAR, with controls ----
+m3 <- feols(gdp_pc_growth ~ Time + grp_pepfar_any + Time:grp_pepfar_any + .[controls],
+            data = panel, cluster = ~iso3c)
+summary(m3)
+# ---- Regression 4: GDP per capita growth, COP, with controls ----
+m4 <- feols(gdp_pc_growth ~ Time + grp_pepfar_cop + Time:grp_pepfar_cop + .[controls],
+            data = panel_cop, cluster = ~iso3c)
+summary(m4)
