@@ -38,3 +38,43 @@ summary(m3)
 m4 <- feols(gdp_pc_growth ~ Time + grp_pepfar_cop + Time:grp_pepfar_cop + .[controls],
             data = panel_cop, cluster = ~iso3c)
 summary(m4)
+# =====================================================
+# All outcomes: the same four regressions for each
+# =====================================================
+
+# The outcomes from the assignment
+outcomes <- c("gdp_pc_growth", "gdp_growth", "gdp",
+              "emp_female", "emp_male",
+              "prim_disengage_girls", "prim_disengage_boys")
+
+# One treatment column named PEPFAR, so all four models use the same names
+panel <- panel |>
+  mutate(PEPFAR = grp_pepfar_any)
+
+panel_cop <- panel |>
+  filter(grp_pepfar_cop == 1 | grp_control == 1) |>
+  mutate(PEPFAR = grp_pepfar_cop)
+
+# A recipe: give it an outcome name (y), get back its four regressions
+run_four <- function(y) {
+  list(
+    "All PEPFAR"     = feols(.[y] ~ Time + PEPFAR + Time:PEPFAR,
+                             data = panel, cluster = ~iso3c),
+    "All + controls" = feols(.[y] ~ Time + PEPFAR + Time:PEPFAR + .[controls],
+                             data = panel, cluster = ~iso3c),
+    "COP"            = feols(.[y] ~ Time + PEPFAR + Time:PEPFAR,
+                             data = panel_cop, cluster = ~iso3c),
+    "COP + controls" = feols(.[y] ~ Time + PEPFAR + Time:PEPFAR + .[controls],
+                             data = panel_cop, cluster = ~iso3c)
+  )
+}
+# Run the four regressions for every outcome
+results <- list()
+for (y in outcomes) {
+  results[[y]] <- run_four(y)
+}
+# Save one results table per outcome (same layout as Crown's tables)
+for (y in outcomes) {
+  table_text <- capture.output(etable(results[[y]], drop = "bl_"))
+  writeLines(table_text, paste0("tables/crown_did_", y, ".txt"))
+}
