@@ -1,0 +1,53 @@
+                       All PEPFAR
+Dependent Var.:        emp_female
+                                 
+Constant         36.42*** (2.210)
+Time             2.039** (0.6197)
+PEPFAR           13.21*** (2.903)
+Time x PEPFAR   -2.328** (0.8709)
+_______________ _________________
+S.E.: Clustered         by: iso3c
+Observations                4,511
+R2                        0.10660
+Adj. R2                   0.10600
+
+                  All + controls
+Dependent Var.:       emp_female
+                                
+Constant        158.1*** (36.22)
+Time            2.321** (0.8139)
+PEPFAR             4.101 (5.117)
+Time x PEPFAR   -3.360** (1.092)
+_______________ ________________
+S.E.: Clustered        by: iso3c
+Observations               3,200
+R2                       0.31186
+Adj. R2                  0.30861
+
+                             COP
+Dependent Var.:       emp_female
+                                
+Constant        36.42*** (2.216)
+Time            2.039** (0.6214)
+PEPFAR          20.33*** (3.756)
+Time x PEPFAR   -3.277** (1.045)
+_______________ ________________
+S.E.: Clustered        by: iso3c
+Observations               2,655
+R2                       0.23779
+Adj. R2                  0.23692
+
+                  COP + controls
+Dependent Var.:       emp_female
+                                
+Constant           71.39 (46.04)
+Time            2.321** (0.8189)
+PEPFAR          25.10*** (6.673)
+Time x PEPFAR   -4.262** (1.329)
+_______________ ________________
+S.E.: Clustered        by: iso3c
+Observations               1,760
+R2                       0.63045
+Adj. R2                  0.62728
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
