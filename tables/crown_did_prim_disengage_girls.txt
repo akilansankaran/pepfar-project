@@ -1,0 +1,53 @@
+                          All PEPFAR
+Dependent Var.: prim_disengage_girls
+                                    
+Constant          0.1318*** (0.0235)
+Time              -0.0615** (0.0190)
+PEPFAR            0.1926*** (0.0402)
+Time x PEPFAR     -0.1034** (0.0311)
+_______________ ____________________
+S.E.: Clustered            by: iso3c
+Observations                   1,835
+R2                           0.22877
+Adj. R2                      0.22751
+
+                      All + controls
+Dependent Var.: prim_disengage_girls
+                                    
+Constant          0.7406*** (0.2114)
+Time               -0.0484* (0.0215)
+PEPFAR               0.0470 (0.0359)
+Time x PEPFAR    -0.1109*** (0.0321)
+_______________ ____________________
+S.E.: Clustered            by: iso3c
+Observations                   1,393
+R2                           0.65363
+Adj. R2                      0.64986
+
+                                 COP
+Dependent Var.: prim_disengage_girls
+                                    
+Constant          0.1318*** (0.0236)
+Time              -0.0615** (0.0191)
+PEPFAR             0.1690** (0.0513)
+Time x PEPFAR      -0.1064* (0.0415)
+_______________ ____________________
+S.E.: Clustered            by: iso3c
+Observations                   1,113
+R2                           0.24624
+Adj. R2                      0.24420
+
+                      COP + controls
+Dependent Var.: prim_disengage_girls
+                                    
+Constant            0.6629* (0.2653)
+Time               -0.0487* (0.0212)
+PEPFAR             -0.0978. (0.0492)
+Time x PEPFAR      -0.1092* (0.0445)
+_______________ ____________________
+S.E.: Clustered            by: iso3c
+Observations                     812
+R2                           0.60810
+Adj. R2                      0.60071
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1

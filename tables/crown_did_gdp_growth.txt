@@ -1,0 +1,53 @@
+                       All PEPFAR
+Dependent Var.:        gdp_growth
+                                 
+Constant        3.590*** (0.6293)
+Time             -0.6524 (0.6655)
+PEPFAR           -0.7241 (0.7055)
+Time x PEPFAR    2.015** (0.7470)
+_______________ _________________
+S.E.: Clustered         by: iso3c
+Observations                4,948
+R2                        0.00662
+Adj. R2                   0.00602
+
+                  All + controls
+Dependent Var.:       gdp_growth
+                                
+Constant          9.351* (4.236)
+Time             -1.361 (0.8569)
+PEPFAR           -2.813* (1.192)
+Time x PEPFAR   2.718** (0.9166)
+_______________ ________________
+S.E.: Clustered        by: iso3c
+Observations               3,458
+R2                       0.02839
+Adj. R2                  0.02416
+
+                              COP
+Dependent Var.:        gdp_growth
+                                 
+Constant        3.590*** (0.6307)
+Time             -0.6524 (0.6670)
+PEPFAR           -0.5056 (0.7982)
+Time x PEPFAR    2.396** (0.8146)
+_______________ _________________
+S.E.: Clustered         by: iso3c
+Observations                3,057
+R2                        0.00839
+Adj. R2                   0.00741
+
+                 COP + controls
+Dependent Var.:      gdp_growth
+                               
+Constant          14.63 (8.916)
+Time            -1.359 (0.8578)
+PEPFAR           -3.102 (2.524)
+Time x PEPFAR   2.752** (1.005)
+_______________ _______________
+S.E.: Clustered       by: iso3c
+Observations              1,969
+R2                      0.03277
+Adj. R2                 0.02534
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
