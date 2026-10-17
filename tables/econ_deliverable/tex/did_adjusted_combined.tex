@@ -1,0 +1,34 @@
+\begin{table}[htbp]
+\centering
+\caption{Difference-in-differences, adjusted: All PEPFAR and COP}
+\label{tab:did_combined}
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{All PEPFAR vs.\ controls} & \multicolumn{2}{c}{COP vs.\ controls} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+ & Pooled OLS & TWFE & Pooled OLS & TWFE \\
+ & (1) & (2) & (3) & (4) \\
+\midrule
+GDP pc growth & $2.509^{***}$ & $3.267^{*}$ & $2.615^{**}$ & $7.274$ \\
+ & (0.906) & (1.673) & (0.995) & (4.636) \\
+Female emp. & $-3.246^{***}$ & $0.284$ & $-4.148^{***}$ & $0.176$ \\
+ & (1.119) & (1.486) & (1.351) & (2.382) \\
+Male emp. & $0.346$ & $1.402$ & $-0.050$ & $2.322$ \\
+ & (0.905) & (1.228) & (1.095) & (2.144) \\
+Girls' diseng. & $-10.927^{***}$ & $1.730$ & $-10.753^{**}$ & $1.632$ \\
+ & (3.290) & (4.421) & (4.505) & (8.093) \\
+Boys' diseng. & $-9.934^{***}$ & $-0.921$ & $-12.282^{***}$ & $-5.110$ \\
+ & (2.638) & (4.483) & (3.793) & (7.912) \\
+GDP growth & $2.856^{***}$ & $3.567^{*}$ & $2.890^{***}$ & $7.402$ \\
+ & (0.955) & (1.802) & (1.041) & (5.049) \\
+log GDP pc & $0.069$ & $-0.003$ & $0.121$ & $-0.117$ \\
+ & (0.095) & (0.167) & (0.124) & (0.450) \\
+log GDP & $0.158$ & $-0.075$ & $0.219$ & $-0.237$ \\
+ & (0.108) & (0.176) & (0.133) & (0.484) \\
+\midrule
+Countries (range across outcomes) & 98--104 & 96--104 & 53--58 & 53--58 \\
+\bottomrule
+\end{tabular}
+\par\vspace{4pt}
+\begin{minipage}{\textwidth}\footnotesize Each cell is the DiD coefficient (treatment group $\times$ Post) from a separate regression; full results in Tables~\ref{tab:did_all_pepfar} and~\ref{tab:did_cop}. Standard errors clustered by country in parentheses. Post $= 1$ for 2004 onward for every country. Sample 1990--2022; controls are the 64 comparison countries valid through 2022 (\texttt{grp\_control\_kates}). All models include the 11 baseline (2003) covariates of Crown et al.\ (2023) Table~1: GDP per capita, population, life expectancy, fertility, urban share, gross secondary enrollment, HIV prevalence, non-PEPFAR donor health aid per capita, domestic health expenditure per capita, US HIV aid before 2004, and World Bank income group. Pooled OLS enters them directly (no fixed effects). TWFE has country and year fixed effects and lets each covariate have its own coefficient in every year (income group enters as income group $\times$ year fixed effects). Disengagement is in percentage points. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.\end{minipage}
+\end{table}

@@ -1,0 +1,32 @@
+\begin{table}[htbp]
+\centering
+\caption{Difference-in-differences, adjusted: COP vs.\ controls}
+\label{tab:did_cop}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccccc}
+\toprule
+ & (1) & (2) & (3) & (4) & (5) & (6) & (7) & (8) \\
+ & GDP pc growth & Female emp. & Male emp. & Girls' diseng. & Boys' diseng. & GDP growth & log GDP pc & log GDP \\
+\midrule
+\multicolumn{9}{l}{\textit{Panel A. Pooled OLS (Crown et al.\ 2023 specification)}} \\
+COP $\times$ Post & $2.615^{**}$ & $-4.148^{***}$ & $-0.050$ & $-10.753^{**}$ & $-12.282^{***}$ & $2.890^{***}$ & $0.121$ & $0.219$ \\
+ & (0.995) & (1.351) & (1.095) & (4.505) & (3.793) & (1.041) & (0.124) & (0.133) \\
+COP & $-2.322$ & $25.285^{***}$ & $9.588^{***}$ & $-9.853^{**}$ & $-5.553$ & $-3.179$ & $-0.487^{*}$ & $0.403$ \\
+ & (2.309) & (6.540) & (2.667) & (4.898) & (4.865) & (2.537) & (0.274) & (0.696) \\
+Post & $-1.005$ & $2.207^{**}$ & $-3.245^{***}$ & $-5.052^{**}$ & $-2.408$ & $-1.497$ & $0.609^{***}$ & $0.837^{***}$ \\
+ & (0.857) & (0.855) & (0.792) & (2.231) & (1.747) & (0.899) & (0.079) & (0.096) \\
+Observations & 1,903 & 1,696 & 1,696 & 784 & 784 & 1,903 & 1,903 & 1,903 \\
+Countries & 58 & 53 & 53 & 57 & 57 & 58 & 58 & 58 \\
+$R^2$ & 0.019 & 0.661 & 0.448 & 0.606 & 0.571 & 0.034 & 0.802 & 0.706 \\
+\midrule
+\multicolumn{9}{l}{\textit{Panel B. Two-way fixed effects}} \\
+COP $\times$ Post & $7.274$ & $0.176$ & $2.322$ & $1.632$ & $-5.110$ & $7.402$ & $-0.117$ & $-0.237$ \\
+ & (4.636) & (2.382) & (2.144) & (8.093) & (7.912) & (5.049) & (0.450) & (0.484) \\
+Observations & 1,903 & 1,696 & 1,696 & 780 & 780 & 1,903 & 1,903 & 1,903 \\
+Countries & 58 & 53 & 53 & 53 & 53 & 58 & 58 & 58 \\
+$R^2$ & 0.361 & 0.984 & 0.930 & 0.932 & 0.911 & 0.380 & 0.929 & 0.981 \\
+\bottomrule
+\end{tabular}}
+\par\vspace{4pt}
+\begin{minipage}{\textwidth}\footnotesize Each column is a separate regression. Panel A: pooled OLS; Panel B: two-way fixed effects (TWFE). Standard errors clustered by country in parentheses. Post $= 1$ for 2004 onward for every country. Sample 1990--2022; controls are the 64 comparison countries valid through 2022 (\texttt{grp\_control\_kates}). All models include the 11 baseline (2003) covariates of Crown et al.\ (2023) Table~1: GDP per capita, population, life expectancy, fertility, urban share, gross secondary enrollment, HIV prevalence, non-PEPFAR donor health aid per capita, domestic health expenditure per capita, US HIV aid before 2004, and World Bank income group. Pooled OLS enters them directly (no fixed effects). TWFE has country and year fixed effects and lets each covariate have its own coefficient in every year (income group enters as income group $\times$ year fixed effects). Disengagement is in percentage points. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.\end{minipage}
+\end{table}
