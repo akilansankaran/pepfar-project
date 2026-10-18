@@ -11,11 +11,11 @@ Four R files, all run from the repository root (the `pepfar-project` folder):
 | Order | File | What it does | Writes to |
 |---|---|---|---|
 | (shared) | [`analysis/econ_setup.R`](../analysis/econ_setup.R) | Loads the data, defines outcomes, covariates, samples, and helper functions. Not run by itself; the other three start with `source("analysis/econ_setup.R")`, which runs it first. | nothing |
-| 1 | [`analysis/replication/did_econ.R`](../analysis/replication/did_econ.R) | **Deliverable 1:** adjusted DiD regressions, All PEPFAR and COP | `tables/econ_deliverable/tex/did_*.tex`, `csv/did_adjusted.csv` |
-| 2 | [`analysis/parallel_trends/event_study_econ_adjusted.R`](../analysis/parallel_trends/event_study_econ_adjusted.R) | **Deliverable 2:** adjusted event studies, tables and graphs | `tables/econ_deliverable/tex/es_*.tex`, `figures/`, `csv/` |
-| 3 | [`analysis/parallel_trends/event_study_economic.R`](../analysis/parallel_trends/event_study_economic.R) | Extra: unadjusted event studies plus robustness (trends, staggered timing, etc.) | `tables/event_studies/` |
+| 1 | [`analysis/replication/did_econ.R`](../analysis/replication/did_econ.R) | **Deliverable 1:** adjusted DiD regressions, All PEPFAR and COP | `tables/crown_did/adjusted/` (`did_adjusted_*.tex`, `did_adjusted.csv`) |
+| 2 | [`analysis/parallel_trends/event_study_econ_adjusted.R`](../analysis/parallel_trends/event_study_econ_adjusted.R) | **Deliverable 2:** adjusted event studies, tables and graphs | `tables/crown_event_studies/adjusted/` (`tex/`, `figures/`, `csv/`) |
+| 3 | [`analysis/parallel_trends/event_study_economic.R`](../analysis/parallel_trends/event_study_economic.R) | Extra: unadjusted event studies plus robustness (trends, staggered timing, etc.) | `tables/crown_event_studies/robustness/` |
 
-Plus one hand-written LaTeX file, [`tables/econ_deliverable/econ_results.tex`](../tables/econ_deliverable/econ_results.tex), which stitches every table and graph into one document.
+Plus one hand-written LaTeX file, [`tables/crown_results.tex`](../tables/crown_results.tex), which stitches every table and graph into one document. See [`tables/README.md`](../tables/README.md) for the folder map.
 
 To rerun everything (about 20 seconds total):
 
@@ -184,7 +184,7 @@ Colors (`pal`: blue, orange, aqua, from a colorblind-checked palette), text colo
 
 ## 3. `analysis/replication/did_econ.R`: the DiD (Deliverable 1)
 
-### Lines 27–37: the two regressions
+### Lines 26–36: the two regressions
 
 **Panel A, `run_did_crown()`: Crown's own model (pooled OLS).** For `gdp_pc_growth`, R runs exactly:
 ```
@@ -206,24 +206,24 @@ gdp_pc_growth ~ treat:post | iso3c + bl_wb_income^year + year[bl_gdp_pc, ..., bl
 ```
 This is the adjusted event study from Section 2, but with **one** PEPFAR × Post coefficient instead of 32 year-specific ones. `treat` and `post` don't appear on their own because the country FE and year FE already absorb them. I used the same covariates × year as the event study, so Panel B and the event study are the same model at two levels of detail. (Emma's mortality script uses covariates × Post instead of × year; that's a smaller set of controls.)
 
-### Lines 40–46: `grab()`
+### Lines 39–45: `grab()`
 Pulls from a model the estimate, SE and p-value for the named terms, plus observations, countries and R². One row per term.
 
-### Lines 48–57: the loop
-For each group (2) × outcome (8), it runs both regressions: **16 pooled OLS + 16 TWFE = 32 regressions**. It stacks the results and renames both DiD terms to `"did"`. They're saved to `csv/did_adjusted.csv`, which is the place to check any number in the tables.
+### Lines 47–56: the loop
+For each group (2) × outcome (8), it runs both regressions: **16 pooled OLS + 16 TWFE = 32 regressions**. It stacks the results and renames both DiD terms to `"did"`. They're saved to `tables/crown_did/adjusted/did_adjusted.csv`, which is the place to check any number in the tables.
 
-### Lines 63–70: `cell()`
+### Lines 62–69: `cell()`
 Looks up one number for a table cell, e.g. `cell("COP", "TWFE", "did", "emp_male", "se")` gives `(2.144)`.
 
-### Lines 88–120: separate tables (one per group)
+### Lines 86–119: separate tables (one per group)
 Columns = the 8 outcomes. Panel A rows: PEPFAR × Post, PEPFAR, Post (each with its SE underneath), Observations, Countries, R². Panel B: PEPFAR × Post, Observations, Countries, R². In the COP table the rows read "COP × Post" and "COP".
-→ `tex/did_adjusted_all_pepfar.tex`, `tex/did_adjusted_cop.tex`
+→ `tables/crown_did/adjusted/did_adjusted_all_pepfar.tex`, `did_adjusted_cop.tex`
 
-### Lines 122–151: combined table
+### Lines 121–150: combined table
 Rows = outcomes, columns = (1) All pooled, (2) All TWFE, (3) COP pooled, (4) COP TWFE. Only the DiD coefficient is shown.
-→ `tex/did_adjusted_combined.tex`
+→ `tables/crown_did/adjusted/did_adjusted_combined.tex`
 
-### Results (from `csv/did_adjusted.csv`)
+### Results (from `tables/crown_did/adjusted/did_adjusted.csv`)
 
 | Outcome | All: pooled | All: TWFE | COP: pooled | COP: TWFE | Crown (adjusted) |
 |---|---|---|---|---|---|
@@ -244,19 +244,19 @@ Rows = outcomes, columns = (1) All pooled, (2) All TWFE, (3) COP pooled, (4) COP
 
 ## 4. `analysis/parallel_trends/event_study_econ_adjusted.R`: event studies (Deliverable 2)
 
-### Lines 27–45: estimate
+### Lines 32–50: estimate
 For each group × outcome (16 models): `run_es(d, y, adjusted = TRUE)` (Section 2), then
 - `tidy_es(m)`: the 32 year coefficients plus the 2003 zero,
 - `pre_test(m)`: the joint pre-trend p-value,
 - `avg_coefs(m, post_pat)`: the average of the 2004–2022 coefficients and its SE,
 - `avg_post_p`: a two-sided p-value for that average from a t distribution with (number of countries − 1) degrees of freedom, the standard choice with clustered SEs.
 
-Saved to `csv/es_adjusted_coefficients.csv` (every year's coefficient) and `csv/es_adjusted_summary.csv` (one row per model).
+Saved under `tables/crown_event_studies/adjusted/`: `csv/es_adjusted_coefficients.csv` (every year's coefficient) and `csv/es_adjusted_summary.csv` (one row per model).
 
-### Lines 55–67: `es_cell()` / `s_cell()`
+### Lines 60–72: `es_cell()` / `s_cell()`
 Look up one coefficient/SE, or one summary number, for a table cell. Blank if there's no data that year (e.g. employment starts in 1991).
 
-### Lines 79–118: separate tables (one per group)
+### Lines 84–123: separate tables (one per group)
 Columns = 8 outcomes; rows = years with coefficient and SE underneath. 32 years × 2 lines doesn't fit on one page, so each group gets **two tables**:
 - **pre-period (1990–2002)**, ending with the pre-2004 joint test p-value,
 - **post-period (2004–2022)**, ending with the average post effect.
@@ -264,11 +264,11 @@ Columns = 8 outcomes; rows = years with coefficient and SE underneath. 32 years 
 Both end with Observations and Countries.
 → `tex/es_adjusted_{all_pepfar,cop}_{pre,post}.tex`
 
-### Lines 120–159: combined tables (one per outcome)
+### Lines 125–164: combined tables (one per outcome)
 Columns: All PEPFAR coef, SE | COP coef, SE. Rows: every year (2003 marked "reference"), then the pre-test p, the average post effect, observations and countries. Years with no data for either group are dropped.
 → `tex/es_adjusted_combined_<outcome>.tex` (8 files) and `tex/es_adjusted_combined_all.tex`, which inputs all 8, one per page.
 
-### Lines 162–226: graphs
+### Lines 167–231: graphs
 Color always follows the group: **All PEPFAR = blue, COP = orange**. Every graph is saved as **PDF** (sharp, for LaTeX) and **PNG** (for quick viewing). Subtitles print the pre-test p and the average post effect (SE).
 - `es_adj_<outcome>_combined`: both groups on one graph (8 graphs)
 - `es_adj_<outcome>_all_pepfar`, `es_adj_<outcome>_cop`: each group alone (16 graphs)
@@ -276,8 +276,8 @@ Color always follows the group: **All PEPFAR = blue, COP = orange**. Every graph
 
 How to read one: each dot is β_k with its 95% CI. Left of the dashed line should hug zero if trends were parallel. Right of it is the effect over time.
 
-### Lines 228–265: LaTeX figure blocks
-Writes `tex/figures_combined.tex`, `tex/figures_all_pepfar.tex` and `tex/figures_cop.tex`. Each is a list of `\begin{figure} \includegraphics{figures/....pdf} \caption{...} \end{figure}` blocks, two per page, so the main document can pull them in with one line each.
+### Lines 233–270: LaTeX figure blocks
+Writes `tex/figures_combined.tex`, `tex/figures_all_pepfar.tex` and `tex/figures_cop.tex`. Each is a list of `\begin{figure} \includegraphics{crown_event_studies/adjusted/figures/....pdf} \caption{...} \end{figure}` blocks. Paths start from the `tables/` folder, and labels start with `crown_` so they don't clash with the mortality tables in the same Overleaf, two per page, so the main document can pull them in with one line each.
 
 ### Results (from `csv/es_adjusted_summary.csv`)
 
@@ -296,13 +296,13 @@ In words: with all covariates × year, **no average post-2004 effect is signific
 
 ---
 
-## 5. `tables/econ_deliverable/econ_results.tex`
+## 5. `tables/crown_results.tex`
 A standard LaTeX article with `booktabs` (table rules), `graphicx` (images) and `amsmath` (equations). It has:
 1. a data paragraph,
 2. Section 1: the DiD equations, then the combined, All PEPFAR and COP DiD tables,
 3. Section 2: the event-study equation, then graphs (combined, All, COP), then tables (combined, All, COP).
 
-Each `\input{tex/...}` pastes in a generated file. **To compile:** upload the whole `tables/econ_deliverable/` folder (the `tex/` and `figures/` subfolders must come along) to Overleaf and compile `econ_results.tex`. LaTeX isn't installed on this Mac, so I checked the files with a script (balanced braces, matching `\begin`/`\end`, correct column counts, all inputs and figures exist, no stray `%` or `_`), but haven't compiled them. If Overleaf complains, send me the error.
+Each `\input{...}` pastes in a generated file, by its path from `tables/`. **To compile:** upload `crown_results.tex` with the `crown_did/` and `crown_event_studies/` folders (same folder structure) to Overleaf and compile it. LaTeX isn't installed on this Mac, so I checked the files with a script (balanced braces, matching `\begin`/`\end`, correct column counts, all inputs and figures exist, no stray `%` or `_`), but haven't compiled them. If Overleaf complains, send me the error.
 
 ---
 
@@ -312,7 +312,7 @@ It now uses the shared setup; its results are unchanged. Sections:
 - **3 (72–112): linear trends.** (a) your slide-3 model, `y ~ treat:post + treat:t | iso3c + year`, where θ = `treat:t` is PEPFAR's extra drift per year and δ = `treat:post` is the jump; (b) country-specific trends, `| iso3c[t] + year`, giving every country its own slope; (c) estimate PEPFAR's 1990–2003 trend, subtract its extension from PEPFAR outcomes, and rerun the event study.
 - **4 (114–162): Sun–Abraham.** `sunab(cohort, year)`, where cohort = each country's first PEPFAR year (controls = never). `sa_lead_test()` rebuilds the joint lead test because fixest only reports the averaged coefficients. I checked it reproduces fixest's own numbers exactly.
 - **5 (164–206): robustness.** Crown's 1990–2018 window with `grp_control`; drop China and India; countries observed in at least half of the pre and post years; growth winsorized at the 1st/99th percentiles; GDP in levels.
-- **6:** CSVs and figures in `tables/event_studies/`, summarized in `tables/event_studies/README.md`.
+- **6:** CSVs and figures in `tables/crown_event_studies/robustness/`, summarized in its `README.md`.
 
 ---
 

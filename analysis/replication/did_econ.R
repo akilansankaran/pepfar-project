@@ -12,13 +12,12 @@
 # b3 / b is the DiD estimate. SEs clustered by country.
 #
 # Run from the repository root:  Rscript analysis/replication/did_econ.R
-# Writes LaTeX tables to tables/econ_deliverable/tex/ and a CSV to .../csv/
+# Writes LaTeX tables and a CSV to tables/crown_did/adjusted/
 
 source("analysis/econ_setup.R")
 
-out_dir <- "tables/econ_deliverable"
-dir.create(file.path(out_dir, "tex"), recursive = TRUE, showWarnings = FALSE)
-dir.create(file.path(out_dir, "csv"), recursive = TRUE, showWarnings = FALSE)
+out_dir <- "tables/crown_did/adjusted"
+dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 
 # =====================================================
 # 1. The two regressions
@@ -54,7 +53,7 @@ for (g in groups) for (y in names(outcomes)) {
 }
 res <- bind_rows(res) |>
   mutate(term = recode(term, "post:treat" = "did", "treat:post" = "did"))
-write_csv(res, file.path(out_dir, "csv", "did_adjusted.csv"))
+write_csv(res, file.path(out_dir, "did_adjusted.csv"))
 
 # =====================================================
 # 2. LaTeX tables
@@ -109,7 +108,7 @@ for (g in groups) {
     c("$R^2$",                     sapply(ys, \(y) cell(g, "TWFE", "did", y, "r2")))
   )
   write_tex_table(
-    file    = file.path(out_dir, "tex", paste0("did_adjusted_", group_file[[g]], ".tex")),
+    file    = file.path(out_dir, paste0("did_adjusted_", group_file[[g]], ".tex")),
     caption = paste0("Difference-in-differences, adjusted: ", g, " vs.\\ controls"),
     label   = paste0("tab:did_", group_file[[g]]),
     head    = list(c("", sprintf("(%d)", seq_along(ys))), c("", outcomes_tex[ys])),
@@ -134,7 +133,7 @@ ctry_range <- sapply(combo_cols, \(k) {
 })
 rows <- c(rows, list("\\midrule", c("Countries (range across outcomes)", ctry_range)))
 write_tex_table(
-  file    = file.path(out_dir, "tex", "did_adjusted_combined.tex"),
+  file    = file.path(out_dir, "did_adjusted_combined.tex"),
   caption = "Difference-in-differences, adjusted: All PEPFAR and COP",
   label   = "tab:did_combined",
   head    = list(c("", "\\multicolumn{2}{c}{All PEPFAR vs.\\ controls}",
@@ -148,4 +147,4 @@ write_tex_table(
                   "Tables~\\ref{tab:did_all_pepfar} and~\\ref{tab:did_cop}.", did_notes),
   align   = "lcccc", resize = FALSE)
 
-cat("DiD done. Tables in", file.path(out_dir, "tex"), "\n")
+cat("DiD done. Tables in", out_dir, "\n")

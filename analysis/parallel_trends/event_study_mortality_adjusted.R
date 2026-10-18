@@ -12,7 +12,7 @@
 # Event-study counterpart of the mortality DiD in analysis/replication/mortality_panel_twfe.R.
 #
 # Run from the repository root:  Rscript analysis/parallel_trends/event_study_mortality_adjusted.R
-# Writes to tables/mortality_deliverable/{tex, figures, csv}/
+# Writes to tables/kates_event_studies/adjusted/{tex, figures, csv}/
 
 source("analysis/econ_setup.R")
 
@@ -25,7 +25,7 @@ outcomes_tex <- c(mort_allcause = "All-cause",
                   mort_child    = "Child",
                   mort_maternal = "Maternal")
 
-out_dir <- "tables/mortality_deliverable"
+out_dir <- "tables/kates_event_studies/adjusted"
 tex_dir <- file.path(out_dir, "tex")
 fig_dir <- file.path(out_dir, "figures")
 csv_dir <- file.path(out_dir, "csv")
