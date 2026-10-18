@@ -1,0 +1,31 @@
+
+\begin{table}[htbp]
+   \caption{\label{tab:crown_did_gdp} Crown et al.\ (2023) DiD replication, 1990--2022: GDP (billions of constant 2022 US dollars)}
+   \bigskip
+   \centering
+   \begin{tabular}{lcccc}
+      \toprule
+       & \multicolumn{2}{c}{Panel A: All PEPFAR vs.\ controls} & \multicolumn{2}{c}{Panel B: COP vs.\ controls} \\ \cmidrule(lr){2-3} \cmidrule(lr){4-5}
+                            & (1)            & (2)            & (3)            & (4)\\  
+      \midrule 
+      PEPFAR $\times$ Post  & 146.302        & 159.055        & 65.469         & 91.611\\   
+                            & (110.930)      & (148.451)      & (57.761)       & (84.413)\\   
+      PEPFAR                & 29.920         & -37.041        & 10.295         & -44.107\\   
+                            & (27.002)       & (75.863)       & (26.521)       & (56.659)\\   
+      Post                  & 55.808$^{***}$ & 65.433$^{***}$ & 55.808$^{***}$ & 66.269$^{***}$\\   
+                            & (12.335)       & (18.246)       & (12.362)       & (18.238)\\   
+       \\
+      Observations          & 4,981          & 3,464          & 3,060          & 1,969\\  
+      Baseline controls     & No             & Yes            & No             & Yes\\  
+      Countries             & 154            & 106            & 95             & 60\\  
+      Control Mean          & 103.819        & 119.792        & 103.819        & 119.792\\  
+      Treatment Mean        & 280.040        & 298.373        & 179.583        & 232.520\\  
+      Baseline Mean         & 77.931         & 74.259         & 58.306         & 75.172\\  
+      \bottomrule
+   \end{tabular}
+   
+   \par \raggedright 
+   Each column is a separate pooled OLS regression of the outcome on Post, PEPFAR and PEPFAR $\times$ Post (the DiD estimate). Post $= 1$ from 2004. Panel A compares all PEPFAR countries with all other countries; Panel B compares COP countries with the Crown comparison group. Columns (2) and (4) add the 11 baseline covariates of Crown et al.\ (2023) Table 1 (not shown). Standard errors clustered by country in parentheses. Control/Treatment Mean: comparison/treated countries from 2004; Baseline Mean: treated countries before 2004. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{table}
+
+

@@ -1,0 +1,31 @@
+
+\begin{table}[htbp]
+   \caption{\label{tab:crown_did_gdp_growth} Crown et al.\ (2023) DiD replication, 1990--2022: GDP growth (\%)}
+   \bigskip
+   \centering
+   \begin{tabular}{lcccc}
+      \toprule
+       & \multicolumn{2}{c}{Panel A: All PEPFAR vs.\ controls} & \multicolumn{2}{c}{Panel B: COP vs.\ controls} \\ \cmidrule(lr){2-3} \cmidrule(lr){4-5}
+                            & (1)           & (2)           & (3)           & (4)\\  
+      \midrule 
+      PEPFAR $\times$ Post  & 2.015$^{***}$ & 2.718$^{***}$ & 2.396$^{***}$ & 2.752$^{***}$\\   
+                            & (0.747)       & (0.917)       & (0.815)       & (1.005)\\   
+      PEPFAR                & -0.724        & -2.813$^{**}$ & -0.506        & -3.102\\   
+                            & (0.705)       & (1.192)       & (0.798)       & (2.524)\\   
+      Post                  & -0.652        & -1.361        & -0.652        & -1.359\\   
+                            & (0.665)       & (0.857)       & (0.667)       & (0.858)\\   
+       \\
+      Observations          & 4,948         & 3,458         & 3,057         & 1,969\\  
+      Baseline controls     & No            & Yes           & No            & Yes\\  
+      Countries             & 154           & 106           & 95            & 60\\  
+      Control Mean          & 2.938         & 3.177         & 2.938         & 3.177\\  
+      Treatment Mean        & 4.229         & 4.422         & 4.828         & 5.134\\  
+      Baseline Mean         & 2.866         & 3.062         & 3.084         & 3.740\\  
+      \bottomrule
+   \end{tabular}
+   
+   \par \raggedright 
+   Each column is a separate pooled OLS regression of the outcome on Post, PEPFAR and PEPFAR $\times$ Post (the DiD estimate). Post $= 1$ from 2004. Panel A compares all PEPFAR countries with all other countries; Panel B compares COP countries with the Crown comparison group. Columns (2) and (4) add the 11 baseline covariates of Crown et al.\ (2023) Table 1 (not shown). Standard errors clustered by country in parentheses. Control/Treatment Mean: comparison/treated countries from 2004; Baseline Mean: treated countries before 2004. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{table}
+
+
