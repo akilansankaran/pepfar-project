@@ -74,9 +74,10 @@ for (y in outcomes) {
   results[[y]] <- run_four(y)
 }
 # Save one results table per outcome (same layout as Crown's tables)
+dir.create("tables/crown_did/pooled_ols", recursive = TRUE, showWarnings = FALSE)
 for (y in outcomes) {
   table_text <- capture.output(etable(results[[y]], drop = "bl_"))
-  writeLines(table_text, paste0("tables/crown_did_", y, ".txt"))
+  writeLines(table_text, paste0("tables/crown_did/pooled_ols/crown_did_", y, ".txt"))
 }
 
 
@@ -87,10 +88,10 @@ for (y in outcomes) {
 #   Panel A, All PEPFAR vs. controls: (1) no controls, (2) with the 11 baseline controls
 #   Panel B, COP vs. controls:        (3) no controls, (4) with the 11 baseline controls
 # Rows: the three DiD coefficients, then group means, then sample sizes.
-# Output: tables/crown_did_tex/crown_did_<outcome>.tex, plus crown_did_all.tex,
+# Output: tables/crown_did/pooled_ols/crown_did_<outcome>.tex, plus crown_did_all.tex,
 # which pulls all seven tables into one file for Overleaf.
 
-tex_dir <- "tables/crown_did_tex"
+tex_dir <- "tables/crown_did/pooled_ols"
 dir.create(tex_dir, recursive = TRUE, showWarnings = FALSE)
 
 # Readable names for the outcomes and coefficients. Percent signs are written

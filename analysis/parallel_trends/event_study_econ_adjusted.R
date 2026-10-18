@@ -10,11 +10,16 @@
 # This is the year-by-year version of Panel B (TWFE) in did_econ.R.
 #
 # Run from the repository root:  Rscript analysis/parallel_trends/event_study_econ_adjusted.R
-# Writes to tables/econ_deliverable/{tex, figures, csv}/
+# Writes to tables/crown_event_studies/adjusted/{tex, figures, csv}/
+# The LaTeX files refer to each other and to the figures by their path from the
+# tables/ folder (e.g. crown_event_studies/adjusted/figures/...), so they work both
+# from tables/crown_results.tex and in Overleaf if the same folders are uploaded.
+# Labels start with crown_ so they never clash with the mortality tables.
 
 source("analysis/econ_setup.R")
 
-out_dir <- "tables/econ_deliverable"
+tex_root <- "crown_event_studies/adjusted"   # path from tables/ (and from the Overleaf root)
+out_dir <- file.path("tables", tex_root)
 tex_dir <- file.path(out_dir, "tex")
 fig_dir <- file.path(out_dir, "figures")
 csv_dir <- file.path(out_dir, "csv")
@@ -95,7 +100,7 @@ for (g in groups) {
   write_tex_table(
     file    = file.path(tex_dir, paste0("es_adjusted_", gf, "_pre.tex")),
     caption = paste0("Adjusted event study, ", g, " vs.\\ controls: pre-period (1990--2002)"),
-    label   = paste0("tab:es_", gf, "_pre"),
+    label   = paste0("tab:crown_es_", gf, "_pre"),
     head    = head,
     rows    = c(year_rows(pre_yrs), list("\\midrule",
                 c("Pre-2004 joint test ($p$)", sapply(ys, \(y) s_cell(g, y, "pre_p")))), foot),
@@ -107,7 +112,7 @@ for (g in groups) {
   write_tex_table(
     file    = file.path(tex_dir, paste0("es_adjusted_", gf, "_post.tex")),
     caption = paste0("Adjusted event study, ", g, " vs.\\ controls: post-period (2004--2022)"),
-    label   = paste0("tab:es_", gf, "_post"),
+    label   = paste0("tab:crown_es_", gf, "_post"),
     head    = head,
     rows    = c(year_rows(post_yrs), list("\\midrule",
                 c("Average 2004--2022", sapply(ys, \(y) s_cell(g, y, "avg"))),
@@ -145,7 +150,7 @@ for (y in ys) {
     file    = file.path(tex_dir, f),
     caption = paste0("Adjusted event study: ", outcomes_tex[[y]],
                      ", All PEPFAR and COP"),
-    label   = paste0("tab:es_combined_", y),
+    label   = paste0("tab:crown_es_combined_", y),
     head    = list(c("", "\\multicolumn{2}{c}{All PEPFAR vs.\\ controls}",
                      "\\multicolumn{2}{c}{COP vs.\\ controls}"),
                    "\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}",
@@ -155,7 +160,7 @@ for (y in ys) {
     align   = "lcccc", resize = FALSE, size = "\\small")
 }
 # One file that pulls in all 8 combined tables, each on its own page
-writeLines(paste0("\\input{tex/", sub("\\.tex$", "", combined_files), "}\n\\clearpage"),
+writeLines(paste0("\\input{", tex_root, "/tex/", sub("\\.tex$", "", combined_files), "}\n\\clearpage"),
            file.path(tex_dir, "es_adjusted_combined_all.tex"))
 
 # =====================================================
@@ -229,7 +234,7 @@ for (g in groups) {
 # =====================================================
 fig_env <- function(file, caption, label, width = "\\textwidth") {
   c("\\begin{figure}[htbp]", "\\centering",
-    sprintf("\\includegraphics[width=%s]{figures/%s.pdf}", width, file),
+    sprintf("\\includegraphics[width=%s]{%s/figures/%s.pdf}", width, tex_root, file),
     sprintf("\\caption{%s}", caption), sprintf("\\label{%s}", label),
     "\\end{figure}")
 }
@@ -238,12 +243,12 @@ tex_lab <- function(y) gsub("%", "\\\\%", outcomes[[y]])
 # Combined: grid first, then one per outcome (two per page)
 lines <- c(fig_env("es_adj_grid_combined",
                    "Adjusted event studies, all outcomes: All PEPFAR (blue) and COP (orange)",
-                   "fig:es_grid_combined"), "\\clearpage")
+                   "fig:crown_es_grid_combined"), "\\clearpage")
 for (i in seq_along(ys)) {
   y <- ys[i]
   lines <- c(lines, fig_env(paste0("es_adj_", y, "_combined"),
                             paste0("Adjusted event study: ", tex_lab(y)),
-                            paste0("fig:es_combined_", y)))
+                            paste0("fig:crown_es_combined_", y)))
   if (i %% 2 == 0) lines <- c(lines, "\\clearpage")
 }
 writeLines(lines, file.path(tex_dir, "figures_combined.tex"))
@@ -253,12 +258,12 @@ for (g in groups) {
   gf <- group_file[[g]]
   lines <- c(fig_env(paste0("es_adj_grid_", gf),
                      paste0("Adjusted event studies, all outcomes: ", g, " vs.\\ controls"),
-                     paste0("fig:es_grid_", gf)), "\\clearpage")
+                     paste0("fig:crown_es_grid_", gf)), "\\clearpage")
   for (i in seq_along(ys)) {
     y <- ys[i]
     lines <- c(lines, fig_env(paste0("es_adj_", y, "_", gf),
                               paste0("Adjusted event study: ", tex_lab(y), ", ", g),
-                              paste0("fig:es_", gf, "_", y)))
+                              paste0("fig:crown_es_", gf, "_", y)))
     if (i %% 2 == 0) lines <- c(lines, "\\clearpage")
   }
   writeLines(lines, file.path(tex_dir, paste0("figures_", gf, ".tex")))

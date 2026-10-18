@@ -21,13 +21,13 @@
 #   6. Figures and tables
 #
 # Run from the repository root:  Rscript analysis/parallel_trends/event_study_economic.R
-# Writes everything to tables/event_studies/
+# Writes everything to tables/crown_event_studies/robustness/
 
 # Data, samples, outcomes, covariates, run_es(), tidy_es(), avg_coefs(), pre_test()
 # and the plot style all come from the shared setup file
 source("analysis/econ_setup.R")
 
-out_dir <- "tables/event_studies"
+out_dir <- "tables/crown_event_studies/robustness"
 fig_dir <- file.path(out_dir, "figures")
 dir.create(fig_dir, recursive = TRUE, showWarnings = FALSE)
 
