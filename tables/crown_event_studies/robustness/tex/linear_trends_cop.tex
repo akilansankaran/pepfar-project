@@ -1,0 +1,31 @@
+\begin{table}[htbp]
+\centering
+\caption{DiD with linear time trends: COP vs.\ controls}
+\label{tab:crown_linear_trends_cop}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+ & (1) & (2) & (3) & (4) &  \\
+ & DiD & PEPFAR trend & DiD + trend & Country trends & Pre-test $p$ \\
+\midrule
+GDP pc growth & $2.063^{***}$ & $0.061$ & $1.054$ & $0.856$ & $<$0.001 \\
+ & (0.795) & (0.062) & (0.985) & (0.990) &  \\
+Female emp. & $-3.233^{***}$ & $-0.262^{***}$ & $0.961$ & $0.969$ & 0.069 \\
+ & (1.070) & (0.078) & (0.715) & (0.727) &  \\
+Male emp. & $-0.482$ & $-0.101$ & $1.136$ & $1.134$ & 0.149 \\
+ & (0.948) & (0.066) & (0.800) & (0.812) &  \\
+Girls' diseng. & $-11.941^{***}$ & $-0.071$ & $-10.975^{***}$ & $-10.943^{***}$ & $<$0.001 \\
+ & (4.027) & (0.215) & (2.737) & (2.694) &  \\
+Boys' diseng. & $-12.726^{***}$ & $-0.149$ & $-10.689^{***}$ & $-10.151^{***}$ & 0.001 \\
+ & (3.317) & (0.177) & (2.636) & (2.670) &  \\
+GDP growth & $2.279^{***}$ & $0.068$ & $1.158$ & $0.954$ & $<$0.001 \\
+ & (0.837) & (0.065) & (1.025) & (1.029) &  \\
+log GDP pc & $0.034$ & $0.003$ & $-0.015$ & $-0.013$ & 0.044 \\
+ & (0.098) & (0.006) & (0.086) & (0.088) &  \\
+log GDP & $0.198^{*}$ & $0.014^{**}$ & $-0.034$ & $-0.026$ & 0.130 \\
+ & (0.102) & (0.006) & (0.086) & (0.089) &  \\
+\bottomrule
+\end{tabular}}
+\par\vspace{4pt}
+\begin{minipage}{\textwidth}\footnotesize Column (1): two-way fixed effects DiD, $Y_{it} = \alpha_i + \gamma_t + \beta(\mathrm{PEPFAR}_i \times \mathrm{Post}_t)$. Columns (2)--(3): the same model plus a PEPFAR-specific linear trend, $Y_{it} = \alpha_i + \gamma_t + \theta(\mathrm{PEPFAR}_i \times t) + \delta(\mathrm{PEPFAR}_i \times \mathrm{Post}_t)$; (2) reports $\theta$, the extra change per year in PEPFAR countries over 1990--2022, and (3) reports $\delta$, the post-2004 shift on top of that trend. Column (4): $\delta$ when every country has its own linear trend. Pre-test $p$: joint F-test that the 13 pre-2004 event-study coefficients are zero (unadjusted). No covariates. Sample 1990--2022; controls are the 64 comparison countries valid through 2022. Standard errors clustered by country in parentheses. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.\end{minipage}
+\end{table}

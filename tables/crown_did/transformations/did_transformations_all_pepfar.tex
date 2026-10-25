@@ -5,28 +5,28 @@
 \begin{tabular}{lcccc}
 \toprule
  & (1) & (2) & (3) & (4) \\
- & Raw & Winsorized 1/99 & Log & IHS \\
+ & Raw & Winsorized 1/99 & log(x+1) & IHS \\
 \midrule
-GDP pc growth & $2.509^{***}$ & $1.957^{***}$ & --- & $0.652^{***}$ \\
- & (0.906) & (0.583) &  & (0.183) \\
-GDP growth & $2.856^{***}$ & $2.224^{***}$ & --- & $0.628^{***}$ \\
- & (0.955) & (0.612) &  & (0.174) \\
-Female emp. & $-3.246^{***}$ & $-3.233^{***}$ & $-0.047$ & $-0.047$ \\
- & (1.119) & (1.085) & (0.047) & (0.047) \\
+GDP pc growth & $2.509^{***}$ & $1.957^{***}$ & $2.442^{***}$ & $0.652^{***}$ \\
+ & (0.906) & (0.583) & (0.806) & (0.183) \\
+GDP growth & $2.856^{***}$ & $2.224^{***}$ & $2.733^{***}$ & $0.628^{***}$ \\
+ & (0.955) & (0.612) & (0.832) & (0.174) \\
+Female emp. & $-3.246^{***}$ & $-3.233^{***}$ & $-0.048$ & $-0.047$ \\
+ & (1.119) & (1.085) & (0.044) & (0.047) \\
 Male emp. & $0.346$ & $0.363$ & $0.006$ & $0.006$ \\
  & (0.905) & (0.904) & (0.014) & (0.014) \\
-Girls' diseng. & $-10.927^{***}$ & $-10.667^{***}$ & $-0.115$ & $-0.109$ \\
- & (3.290) & (3.245) & (0.203) & (0.189) \\
-Boys' diseng. & $-9.934^{***}$ & $-9.490^{***}$ & $-0.231$ & $-0.227$ \\
- & (2.638) & (2.536) & (0.201) & (0.187) \\
+Girls' diseng. & $-10.927^{***}$ & $-10.667^{***}$ & $-0.136$ & $-0.109$ \\
+ & (3.290) & (3.245) & (0.166) & (0.189) \\
+Boys' diseng. & $-9.934^{***}$ & $-9.490^{***}$ & $-0.241$ & $-0.227$ \\
+ & (2.638) & (2.536) & (0.163) & (0.187) \\
 GDP per capita & $-1921.652^{***}$ & $-1860.817^{***}$ & $0.069$ & $0.069$ \\
  & (533.211) & (513.042) & (0.095) & (0.095) \\
-GDP & $161.945$ & $20.395$ & $0.158$ & $0.208^{**}$ \\
- & (148.572) & (31.372) & (0.108) & (0.103) \\
+GDP & $161.945$ & $20.395$ & $0.191^{**}$ & $0.208^{**}$ \\
+ & (148.572) & (31.372) & (0.094) & (0.103) \\
 \midrule
 Countries & 98--104 & 98--104 & 98--104 & 98--104 \\
 \bottomrule
 \end{tabular}
 \par\vspace{4pt}
-\begin{minipage}{\textwidth}\footnotesize Each cell is the DiD coefficient (treatment group $\times$ Post) from Crown et al.\ (2023)'s pooled OLS with the 11 baseline (2003) covariates, with the outcome transformed as in the column header. Raw: the outcome as reported (GDP per capita in constant 2022 US dollars, GDP in billions, growth and employment in \%, disengagement in percentage points). Winsorized: values outside the 1st--99th percentiles of the full panel set to those percentiles. Log: natural log, only for outcomes that are always positive (--- for growth rates, which can be negative). IHS: inverse hyperbolic sine, $\sinh^{-1}(y) = \ln(y + \sqrt{y^2 + 1})$, defined for negative values. With log or IHS, coefficients are approximately proportional changes. Sample 1990--2022; controls are the 64 comparison countries valid through 2022. Standard errors clustered by country. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.\end{minipage}
+\begin{minipage}{\textwidth}\footnotesize Each cell is the DiD coefficient (treatment group $\times$ Post) from Crown et al.\ (2023)'s pooled OLS with the 11 baseline (2003) covariates, with the outcome transformed as in the column header. Raw: the outcome as reported (GDP per capita in constant 2022 US dollars, GDP in billions, growth and employment in \%, disengagement in percentage points). Winsorized: values outside the 1st--99th percentiles of the full panel set to those percentiles. log(x+1): $\ln(1 + y)$; for growth rates, $100 \ln(1 + y/100)$, the growth rate in log points. IHS: inverse hyperbolic sine, $\sinh^{-1}(y) = \ln(y + \sqrt{y^2 + 1})$, defined for negative values. With log(x+1) or IHS, coefficients on levels are approximately proportional changes. Sample 1990--2022; controls are the 64 comparison countries valid through 2022. Standard errors clustered by country. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.\end{minipage}
 \end{table}

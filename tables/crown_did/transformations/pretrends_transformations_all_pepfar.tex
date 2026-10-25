@@ -1,0 +1,33 @@
+\begin{table}[htbp]
+\centering
+\caption{Parallel-trends test under outcome transformations: All PEPFAR vs.\ controls}
+\label{tab:crown_pretrends_transform_all_pepfar}
+\begin{tabular}{lcccc}
+\toprule
+ & (1) & (2) & (3) & (4) \\
+ & Raw & Winsorized 1/99 & log(x+1) & IHS \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel A: unadjusted (country and year fixed effects)}} \\
+GDP pc growth & \textbf{0.001} & \textbf{$<$0.001} & \textbf{0.002} & \textbf{$<$0.001} \\
+GDP growth & \textbf{0.003} & \textbf{$<$0.001} & \textbf{0.006} & \textbf{$<$0.001} \\
+Female emp. & 0.139 & 0.145 & 0.098 & 0.102 \\
+Male emp. & 0.066 & 0.066 & 0.065 & 0.065 \\
+Girls' diseng. & \textbf{0.002} & \textbf{0.001} & \textbf{$<$0.001} & \textbf{$<$0.001} \\
+Boys' diseng. & 0.113 & 0.109 & 0.075 & \textbf{0.038} \\
+GDP per capita & 0.072 & 0.064 & 0.179 & 0.180 \\
+GDP & 0.674 & 0.712 & 0.490 & 0.505 \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel B: adjusted (plus the 11 baseline covariates $\times$ year)}} \\
+GDP pc growth & \textbf{0.022} & \textbf{0.012} & \textbf{0.025} & \textbf{0.012} \\
+GDP growth & \textbf{0.046} & 0.071 & 0.054 & \textbf{0.031} \\
+Female emp. & \textbf{0.016} & \textbf{0.017} & \textbf{0.011} & \textbf{0.011} \\
+Male emp. & 0.312 & 0.184 & 0.325 & 0.324 \\
+Girls' diseng. & \textbf{0.015} & \textbf{0.016} & 0.226 & 0.225 \\
+Boys' diseng. & 0.133 & 0.146 & 0.747 & 0.776 \\
+GDP per capita & 0.767 & 0.767 & 0.674 & 0.674 \\
+GDP & 0.760 & 0.694 & 0.690 & 0.731 \\
+\bottomrule
+\end{tabular}
+\par\vspace{4pt}
+\begin{minipage}{\textwidth}\footnotesize Each cell is the $p$-value of a joint F-test that all 13 pre-2004 event-study coefficients (1990--2002, relative to 2003) are zero, with the outcome transformed as in the column header (transformations as in Table~\ref{tab:crown_did_transform_all_pepfar}). Bold: $p < 0.05$, parallel trends rejected at 5\%. Event studies with country and year fixed effects (Panel A), plus each baseline covariate interacted with year and income group $\times$ year fixed effects (Panel B). Sample 1990--2022; controls are the 64 comparison countries valid through 2022. Standard errors clustered by country.\end{minipage}
+\end{table}
