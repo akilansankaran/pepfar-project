@@ -330,4 +330,36 @@ p_forest <- ggplot(forest, aes(avg_post, spec, color = group)) +
 ggsave(file.path(fig_dir, "robustness_avg_post.png"), p_forest,
        width = 10, height = 11, dpi = 300, bg = "white")
 
+# (6) Slide versions on the team's event-time axis: 0 = 2004, so 2003 (the reference
+#     year) is -1. Same coefficients as (2); only the x-axis labels change. Text is
+#     16pt at the saved size, so the figure can go on a slide without shrinking.
+et_breaks <- c(-10, -5, 0, 5, 10, 15)
+short_lab <- c(gdp_pc_growth = "GDP pc growth (%)", gdp_growth = "GDP growth (%)",
+               emp_female = "Female emp. (%)", emp_male = "Male emp. (%)",
+               prim_disengage_girls = "Girls' diseng. (pp)",
+               prim_disengage_boys = "Boys' diseng. (pp)",
+               log_gdp_pc = "log GDP pc", log_gdp = "log GDP")
+theme_slide <- theme_es + theme(text = element_text(size = 16),
+                                axis.text = element_text(size = 16, color = ink2),
+                                strip.text = element_text(size = 16),
+                                legend.text = element_text(size = 16),
+                                axis.title = element_text(size = 16, color = ink2))
+es_eventtime <- function(keep, ncol) {
+  main_coefs |> filter(spec == "Unadjusted", outcome %in% keep) |>
+    mutate(event_time = year - 2004,
+           outcome = factor(short_lab[outcome], levels = short_lab[keep])) |>
+    ggplot(aes(event_time, est, color = group)) +
+    es_layer(-0.5) +
+    facet_wrap(~outcome, scales = "free_y", ncol = ncol) +
+    scale_color_manual(values = pal[1:2]) +
+    scale_x_continuous(breaks = et_breaks) +
+    labs(x = "Years since PEPFAR start (0 = 2004)", y = "Gap vs. 2003") +
+    theme_slide
+}
+key4 <- c("gdp_pc_growth", "emp_female", "prim_disengage_girls", "log_gdp_pc")
+ggsave(file.path(fig_dir, "es_key4_eventtime.png"), es_eventtime(key4, 2) + theme(legend.margin = margin(0, 0, 0, 0)),
+       width = 6.7, height = 4.6, dpi = 300, bg = "white")
+ggsave(file.path(fig_dir, "es_overview_eventtime.png"), es_eventtime(names(outcomes), 2),
+       width = 10, height = 12, dpi = 300, bg = "white")
+
 cat("Done. Results in", out_dir, "\n")
