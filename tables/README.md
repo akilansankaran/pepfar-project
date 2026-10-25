@@ -6,7 +6,8 @@ Every output the analysis scripts write. One folder per study (Crown = economic 
 tables/
 ├── crown_did/                      Crown et al. (2023) difference-in-differences
 │   ├── pooled_ols/                 Table A8-style DiD, unadjusted + adjusted   ← analysis/replication/did_crown.R  (Rishad)
-│   └── adjusted/                   adjusted pooled OLS + TWFE DiD              ← analysis/replication/did_econ.R   (Anthony)
+│   ├── adjusted/                   adjusted pooled OLS + TWFE DiD              ← analysis/replication/did_econ.R   (Anthony)
+│   └── transformations/            DiD with raw / winsorized / log / IHS outcomes ← analysis/replication/did_transformations.R (Anthony)
 ├── crown_event_studies/            Crown economic outcomes, year-by-year
 │   ├── adjusted/                   adjusted event studies: tex/ figures/ csv/  ← analysis/parallel_trends/event_study_econ_adjusted.R (Anthony)
 │   └── robustness/                 unadjusted, linear trends, Sun–Abraham, etc. ← analysis/parallel_trends/event_study_economic.R      (Anthony)
@@ -27,10 +28,17 @@ The Crown event-study LaTeX files refer to their figures and to each other by th
 \input{crown_event_studies/adjusted/tex/figures_combined}
 ```
 
-and, for the adjusted DiD:
+for the adjusted DiD:
 
 ```latex
 \input{crown_did/adjusted/did_adjusted_combined}
 \input{crown_did/adjusted/did_adjusted_all_pepfar}
 \input{crown_did/adjusted/did_adjusted_cop}
+```
+
+and, for the outcome-transformation robustness check:
+
+```latex
+\input{crown_did/transformations/did_transformations_all_pepfar}
+\input{crown_did/transformations/did_transformations_cop}
 ```
