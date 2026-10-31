@@ -8,6 +8,8 @@ tables/
 │   ├── pooled_ols/                 Table A8-style DiD, unadjusted + adjusted   ← analysis/replication/did_crown.R  (Rishad)
 │   ├── adjusted/                   adjusted pooled OLS + TWFE DiD              ← analysis/replication/did_econ.R   (Anthony)
 │   └── transformations/            DiD + parallel-trends tests with raw / winsorized / log(x+1) / IHS outcomes ← analysis/replication/did_transformations.R (Anthony)
+├── crown_panel/                    Crown outcomes, two-way fixed effects panel
+│   └── growth_robustness/          GDP (pc) growth: raw / winsorized / winsorized log / winsorized IHS, with and without Asia ← analysis/replication/twfe_growth_robustness.R (Anthony)
 ├── crown_event_studies/            Crown economic outcomes, year-by-year
 │   ├── adjusted/                   adjusted event studies: tex/ figures/ csv/  ← analysis/parallel_trends/event_study_econ_adjusted.R (Anthony)
 │   └── robustness/                 unadjusted, linear trends, Sun–Abraham, etc. ← analysis/parallel_trends/event_study_economic.R      (Anthony)
@@ -51,4 +53,11 @@ and, for the linear-time-trend check:
 ```latex
 \input{crown_event_studies/robustness/tex/linear_trends_all_pepfar}
 \input{crown_event_studies/robustness/tex/linear_trends_cop}
+```
+
+and, for the TWFE growth robustness check (transformations and excluding Asia):
+
+```latex
+\input{crown_panel/growth_robustness/twfe_robustness_gdp_pc_growth}
+\input{crown_panel/growth_robustness/twfe_robustness_gdp_growth}
 ```
