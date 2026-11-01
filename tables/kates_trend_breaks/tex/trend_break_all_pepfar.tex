@@ -1,0 +1,32 @@
+\begin{table}[htbp]
+\centering
+\caption{Linear trend breaks in mortality around 2004: All PEPFAR vs.\ controls}
+\label{tab:trend_break_all_pepfar}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+ & \multicolumn{3}{c}{Unadjusted} & \multicolumn{3}{c}{Adjusted} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+ & (1) & (2) & (3) & (4) & (5) & (6) \\
+ & All-cause & Child & Maternal & All-cause & Child & Maternal \\
+\midrule
+$\mathrm{PEPFAR}_i \times (t-1990)$ \quad [$\gamma_1$] & $-0.064$ & $-1.083^{***}$ & $-10.877^{***}$ & $0.085^{**}$ & $0.408$ & $1.708$ \\
+ & (0.044) & (0.374) & (2.443) & (0.042) & (0.398) & (3.213) \\
+$\mathrm{PEPFAR}_i \times (t-2004) \times \mathrm{Post}_t$ \quad [$\gamma_2$] & $-0.113^{**}$ & $-0.168$ & $4.131^{*}$ & $-0.081^{**}$ & $-0.572$ & $-3.653$ \\
+ & (0.046) & (0.332) & (2.207) & (0.041) & (0.394) & (3.122) \\
+$\mathrm{PEPFAR}_i \times \mathrm{Post}_t$ \quad [$\gamma_4$] & $-0.410^{**}$ & $-8.319^{***}$ & $20.631^{**}$ & $-0.056$ & $0.730$ & $-3.264$ \\
+ & (0.177) & (2.294) & (8.582) & (0.172) & (2.115) & (7.352) \\
+\midrule
+Country and year FE & Yes & Yes & Yes & Yes & Yes & Yes \\
+Baseline covariates $\times$ year & No & No & No & Yes & Yes & Yes \\
+F-test: $\gamma_1 + \gamma_2 = 0$ & 50.16 & 45.87 & 30.22 & 0.05 & 1.00 & 1.71 \\
+ & [0.000] & [0.000] & [0.000] & [0.832] & [0.320] & [0.194] \\
+Outcome mean, 2003 & 9.2 & 59.3 & 254.8 & 8.9 & 65.3 & 288.6 \\
+Adjusted $R^2$ & 0.590 & 0.877 & 0.929 & 0.592 & 0.925 & 0.953 \\
+Observations & 5,016 & 4,950 & 3,427 & 3,432 & 3,432 & 2,392 \\
+Countries & 152 & 150 & 149 & 104 & 104 & 104 \\
+\bottomrule
+\end{tabular}}
+\par\vspace{4pt}
+\begin{minipage}{\textwidth}\footnotesize Estimates of $Y_{it} = \alpha_i + \gamma_t + \gamma_1 (X_i \times [t-1990]) + \gamma_2 (X_i \times [t-2004] \times \mathrm{Post}_t) + \gamma_4 (X_i \times \mathrm{Post}_t) + \varepsilon_{it}$, following Burgess and Pande (2005), with $\mathrm{Post}_t = 1$ from 2004. $\gamma_1$ is the pre-2004 trend relative to controls (per year), $\gamma_2$ the change in that trend from 2004, and $\gamma_4$ the level shift in 2004. The F-test (1, countries $-$ 1 df) is that the post-2004 trend $\gamma_1 + \gamma_2$ is zero; $p$-value in brackets. $\mathrm{PEPFAR}_i$ is 1 for every PEPFAR recipient and 0 for the controls. Adjusted columns add the 11 baseline (2003) covariates of Crown et al.\ (2023), each with its own coefficient in every year, and World Bank income group $\times$ year fixed effects. Outcomes: crude death rate per 1,000 people, under-5 deaths per 1,000 live births, and maternal deaths per 100,000 live births (WDI). Sample 1990--2022 (maternal mortality from 2000); controls are the 64 comparison countries valid through 2022 (\texttt{grp\_control\_kates}). Standard errors clustered by country in parentheses. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.\end{minipage}
+\end{table}

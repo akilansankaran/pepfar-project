@@ -1,0 +1,32 @@
+\begin{table}[htbp]
+\centering
+\caption{Linear trend breaks in mortality around 2004: COP vs.\ controls}
+\label{tab:trend_break_cop}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+ & \multicolumn{3}{c}{Unadjusted} & \multicolumn{3}{c}{Adjusted} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+ & (1) & (2) & (3) & (4) & (5) & (6) \\
+ & All-cause & Child & Maternal & All-cause & Child & Maternal \\
+\midrule
+$\mathrm{COP}_i \times (t-1990)$ \quad [$\gamma_1$] & $-0.033$ & $-0.551$ & $-13.453^{**}$ & $0.101$ & $1.873^{**}$ & $1.284$ \\
+ & (0.088) & (0.562) & (5.300) & (0.084) & (0.739) & (6.890) \\
+$\mathrm{COP}_i \times (t-2004) \times \mathrm{Post}_t$ \quad [$\gamma_2$] & $-0.265^{***}$ & $-1.373^{**}$ & $4.049$ & $-0.090$ & $-2.304^{***}$ & $-6.092$ \\
+ & (0.099) & (0.542) & (5.368) & (0.088) & (0.859) & (7.735) \\
+$\mathrm{COP}_i \times \mathrm{Post}_t$ \quad [$\gamma_4$] & $-0.627^{**}$ & $-15.347^{***}$ & $67.542^{***}$ & $-0.259$ & $0.303$ & $26.102$ \\
+ & (0.268) & (3.900) & (19.921) & (0.345) & (4.936) & (27.142) \\
+\midrule
+Country and year FE & Yes & Yes & Yes & Yes & Yes & Yes \\
+Baseline covariates $\times$ year & No & No & No & Yes & Yes & Yes \\
+F-test: $\gamma_1 + \gamma_2 = 0$ & 64.96 & 64.76 & 29.63 & 0.10 & 1.71 & 2.32 \\
+ & [0.000] & [0.000] & [0.000] & [0.748] & [0.196] & [0.133] \\
+Outcome mean, 2003 & 9.0 & 52.9 & 198.5 & 8.4 & 56.0 & 208.6 \\
+Adjusted $R^2$ & 0.561 & 0.876 & 0.924 & 0.462 & 0.930 & 0.946 \\
+Observations & 3,069 & 3,003 & 2,070 & 1,914 & 1,914 & 1,334 \\
+Countries & 93 & 91 & 90 & 58 & 58 & 58 \\
+\bottomrule
+\end{tabular}}
+\par\vspace{4pt}
+\begin{minipage}{\textwidth}\footnotesize Estimates of $Y_{it} = \alpha_i + \gamma_t + \gamma_1 (X_i \times [t-1990]) + \gamma_2 (X_i \times [t-2004] \times \mathrm{Post}_t) + \gamma_4 (X_i \times \mathrm{Post}_t) + \varepsilon_{it}$, following Burgess and Pande (2005), with $\mathrm{Post}_t = 1$ from 2004. $\gamma_1$ is the pre-2004 trend relative to controls (per year), $\gamma_2$ the change in that trend from 2004, and $\gamma_4$ the level shift in 2004. The F-test (1, countries $-$ 1 df) is that the post-2004 trend $\gamma_1 + \gamma_2$ is zero; $p$-value in brackets. $\mathrm{COP}_i$ is 1 for COP countries and 0 for the controls. Adjusted columns add the 11 baseline (2003) covariates of Crown et al.\ (2023), each with its own coefficient in every year, and World Bank income group $\times$ year fixed effects. Outcomes: crude death rate per 1,000 people, under-5 deaths per 1,000 live births, and maternal deaths per 100,000 live births (WDI). Sample 1990--2022 (maternal mortality from 2000); controls are the 64 comparison countries valid through 2022 (\texttt{grp\_control\_kates}). Standard errors clustered by country in parentheses. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.\end{minipage}
+\end{table}

@@ -1,0 +1,32 @@
+\begin{table}[htbp]
+\centering
+\caption{Linear trend breaks in mortality around 2004: baseline HIV prevalence}
+\label{tab:trend_break_hiv_burden}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+ & \multicolumn{3}{c}{Unadjusted} & \multicolumn{3}{c}{Adjusted} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+ & (1) & (2) & (3) & (4) & (5) & (6) \\
+ & All-cause & Child & Maternal & All-cause & Child & Maternal \\
+\midrule
+$\mathrm{HIV}_{i,2003} \times (t-1990)$ \quad [$\gamma_1$] & $0.019^{***}$ & $0.110^{**}$ & $-0.076$ & $0.031^{***}$ & $0.267^{***}$ & $1.264^{*}$ \\
+ & (0.006) & (0.054) & (0.505) & (0.007) & (0.068) & (0.669) \\
+$\mathrm{HIV}_{i,2003} \times (t-2004) \times \mathrm{Post}_t$ \quad [$\gamma_2$] & $-0.044^{***}$ & $-0.227^{***}$ & $-0.657$ & $-0.041^{***}$ & $-0.263^{***}$ & $-1.052$ \\
+ & (0.006) & (0.047) & (0.538) & (0.009) & (0.074) & (0.734) \\
+$\mathrm{HIV}_{i,2003} \times \mathrm{Post}_t$ \quad [$\gamma_4$] & $-0.030$ & $-0.831^{***}$ & $9.702^{***}$ & $0.027$ & $-0.253$ & $11.744^{***}$ \\
+ & (0.034) & (0.259) & (2.520) & (0.040) & (0.365) & (3.737) \\
+\midrule
+Country and year FE & Yes & Yes & Yes & Yes & Yes & Yes \\
+Baseline covariates $\times$ year & No & No & No & Yes & Yes & Yes \\
+F-test: $\gamma_1 + \gamma_2 = 0$ & 76.40 & 27.91 & 14.90 & 6.54 & 0.01 & 0.29 \\
+ & [0.000] & [0.000] & [0.000] & [0.012] & [0.914] & [0.591] \\
+Outcome mean, 2003 & 9.2 & 59.4 & 254.8 & 8.9 & 65.3 & 288.6 \\
+Adjusted $R^2$ & 0.580 & 0.861 & 0.927 & 0.595 & 0.926 & 0.950 \\
+Observations & 4,983 & 4,917 & 3,427 & 3,432 & 3,432 & 2,392 \\
+Countries & 151 & 149 & 149 & 104 & 104 & 104 \\
+\bottomrule
+\end{tabular}}
+\par\vspace{4pt}
+\begin{minipage}{\textwidth}\footnotesize Estimates of $Y_{it} = \alpha_i + \gamma_t + \gamma_1 (X_i \times [t-1990]) + \gamma_2 (X_i \times [t-2004] \times \mathrm{Post}_t) + \gamma_4 (X_i \times \mathrm{Post}_t) + \varepsilon_{it}$, following Burgess and Pande (2005), with $\mathrm{Post}_t = 1$ from 2004. $\gamma_1$ is the pre-2004 trend relative to controls (per year), $\gamma_2$ the change in that trend from 2004, and $\gamma_4$ the level shift in 2004. The F-test (1, countries $-$ 1 df) is that the post-2004 trend $\gamma_1 + \gamma_2$ is zero; $p$-value in brackets. $\mathrm{HIV}_{i,2003}$ is HIV prevalence among ages 15--49 in 2003, in percent (WDI, gap-filled with GBD), so coefficients are per percentage point of 2003 prevalence; sample is all PEPFAR recipients and controls with 2003 prevalence. Baseline HIV prevalence is not among the adjusted controls, since its year-by-year coefficients would absorb the trend terms. Adjusted columns add the other 10 baseline (2003) covariates of Crown et al.\ (2023), each with its own coefficient in every year, and World Bank income group $\times$ year fixed effects. Outcomes: crude death rate per 1,000 people, under-5 deaths per 1,000 live births, and maternal deaths per 100,000 live births (WDI). Sample 1990--2022 (maternal mortality from 2000); controls are the 64 comparison countries valid through 2022 (\texttt{grp\_control\_kates}). Standard errors clustered by country in parentheses. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.\end{minipage}
+\end{table}
