@@ -9,7 +9,9 @@ tables/
 │   ├── adjusted/                   adjusted pooled OLS + TWFE DiD              ← analysis/replication/did_econ.R   (Anthony)
 │   └── transformations/            DiD + parallel-trends tests with raw / winsorized / log(x+1) / IHS outcomes ← analysis/replication/did_transformations.R (Anthony)
 ├── crown_panel/                    Crown outcomes, two-way fixed effects panel
-│   └── growth_robustness/          GDP (pc) growth: raw / winsorized / winsorized log / winsorized IHS, with and without Asia ← analysis/replication/twfe_growth_robustness.R (Anthony)
+│   ├── growth_robustness/          GDP (pc) growth: raw / winsorized / winsorized log / winsorized IHS, with and without Asia;
+│   │                               PEPFAR dummy and HIV intensity (2003 prevalence) x Post ← analysis/replication/twfe_growth_robustness.R (Anthony)
+│   └── mechanisms/                 FDI, saving and investment, same TWFE spec          ← analysis/mechanisms/fdi_panel.R (Anthony)
 ├── crown_event_studies/            Crown economic outcomes, year-by-year
 │   ├── adjusted/                   adjusted event studies: tex/ figures/ csv/  ← analysis/parallel_trends/event_study_econ_adjusted.R (Anthony)
 │   └── robustness/                 unadjusted, linear trends, Sun–Abraham, etc. ← analysis/parallel_trends/event_study_economic.R      (Anthony)
@@ -61,3 +63,11 @@ and, for the TWFE growth robustness check (transformations and excluding Asia):
 \input{crown_panel/growth_robustness/twfe_robustness_gdp_pc_growth}
 \input{crown_panel/growth_robustness/twfe_robustness_gdp_growth}
 ```
+
+and, for the investment mechanism (FDI, saving, investment):
+
+```latex
+\input{crown_panel/mechanisms/fdi_panel}
+```
+
+The mechanism outcomes are not in the main panel; `data_pull/pull_wdi_mechanisms.R` pulls them from the WDI into `data/intermediate/wdi_mechanisms_1990_2022.csv`.

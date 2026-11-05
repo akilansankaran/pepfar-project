@@ -139,6 +139,32 @@ pre_test <- function(m) {
 n_countries <- function(m, data) length(unique(data$iso3c[obs(m)]))
 
 # =====================================================
+# Panel (TWFE) DiD with a shared Post, used by the growth robustness and mechanism scripts
+# =====================================================
+# Y_it = a_i + g_t + b (T_i x Post_t) [+ X_i x Post_t] + e_it
+# tvar is the treatment: "treat" (the 0/1 PEPFAR or COP dummy) or "bl_hiv_prev" (HIV
+# prevalence 2003, the intensity version). Adjusted adds the baseline covariates x Post,
+# leaving out the treatment itself (bl_hiv_prev x Post cannot be both).
+run_twfe_post <- function(d, yvar, tvar = "treat", adjusted = FALSE) {
+  rhs <- paste0(tvar, ":post")
+  if (adjusted) {
+    rhs <- c(rhs, paste0(setdiff(bl_cont, tvar), ":post"), "i(bl_wb_income, post, ref = 'L')")
+  }
+  feols(as.formula(paste(yvar, "~", paste(rhs, collapse = " + "), "| iso3c + year")),
+        data = d, cluster = ~iso3c)
+}
+
+# Treatment versions for run_twfe_post, with LaTeX labels
+treatments <- c(treat       = "PEPFAR group $\\times$ Post",
+                bl_hiv_prev = "HIV prevalence 2003 $\\times$ Post")
+
+# Values below the 1st / above the 99th percentile set to those percentiles
+winsor <- function(x, p = 0.01) {
+  q <- quantile(x, c(p, 1 - p), na.rm = TRUE)
+  pmin(pmax(x, q[1]), q[2])
+}
+
+# =====================================================
 # Plot style
 # =====================================================
 # Colors: first three slots of a colorblind-validated categorical palette

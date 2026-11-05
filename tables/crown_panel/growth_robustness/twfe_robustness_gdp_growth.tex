@@ -1,37 +1,40 @@
 \begin{table}[htbp]
 \centering
-\caption{PEPFAR and GDP growth: two-way fixed effects under outcome transformations and without Asia}
+\caption{PEPFAR and GDP growth: two-way fixed effects with the PEPFAR dummy and HIV intensity, under outcome transformations and without Asia}
 \label{tab:crown_twfe_robust_gdp_growth}
-\begin{tabular}{lcccc}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccccc}
 \toprule
- & \multicolumn{2}{c}{All PEPFAR vs.\ controls} & \multicolumn{2}{c}{COP vs.\ controls} \\
-\cmidrule(lr){2-3} \cmidrule(lr){4-5}
- & Unadjusted & Adjusted & Unadjusted & Adjusted \\
- & (1) & (2) & (3) & (4) \\
+ & \multicolumn{4}{c}{Treatment: PEPFAR group $\times$ Post} & \multicolumn{4}{c}{Treatment: HIV prevalence 2003 $\times$ Post} \\
+\cmidrule(lr){2-5} \cmidrule(lr){6-9}
+ & \multicolumn{2}{c}{All PEPFAR sample} & \multicolumn{2}{c}{COP sample} & \multicolumn{2}{c}{All PEPFAR sample} & \multicolumn{2}{c}{COP sample} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+ & Unadj. & Adj. & Unadj. & Adj. & Unadj. & Adj. & Unadj. & Adj. \\
+ & (1) & (2) & (3) & (4) & (5) & (6) & (7) & (8) \\
 \midrule
-\multicolumn{5}{l}{\textit{Panel A: All countries}} \\
-Raw (levels) & $1.868^{**}$ & $3.572^{**}$ & $2.279^{***}$ & $7.483^{*}$ \\
- & (0.772) & (1.692) & (0.837) & (4.463) \\
-Winsorized & $1.485^{**}$ & $2.374^{**}$ & $1.782^{***}$ & $4.131^{*}$ \\
- & (0.576) & (0.935) & (0.656) & (2.358) \\
-Winsorized, log & $1.492^{***}$ & $2.356^{**}$ & $1.729^{***}$ & $3.929^{*}$ \\
- & (0.572) & (0.906) & (0.649) & (2.256) \\
-Winsorized, IHS & $0.472^{***}$ & $0.597^{**}$ & $0.554^{***}$ & $0.976$ \\
- & (0.159) & (0.251) & (0.206) & (0.617) \\
-Countries & 151 & 104 & 92 & 58 \\
+\multicolumn{9}{l}{\textit{Panel A: All countries}} \\
+Raw (levels) & $1.868^{**}$ & $3.572^{**}$ & $2.279^{***}$ & $7.483^{*}$ & $-0.053$ & $-0.242^{***}$ & $-0.022$ & $-0.110$ \\
+ & (0.772) & (1.692) & (0.837) & (4.463) & (0.039) & (0.074) & (0.040) & (0.151) \\
+Winsorized & $1.485^{**}$ & $2.374^{**}$ & $1.782^{***}$ & $4.131^{*}$ & $-0.040$ & $-0.211^{***}$ & $-0.016$ & $-0.118$ \\
+ & (0.576) & (0.935) & (0.656) & (2.358) & (0.035) & (0.067) & (0.038) & (0.107) \\
+Winsorized, log & $1.492^{***}$ & $2.356^{**}$ & $1.729^{***}$ & $3.929^{*}$ & $-0.043$ & $-0.214^{***}$ & $-0.018$ & $-0.121$ \\
+ & (0.572) & (0.906) & (0.649) & (2.256) & (0.034) & (0.068) & (0.037) & (0.105) \\
+Winsorized, IHS & $0.472^{***}$ & $0.597^{**}$ & $0.554^{***}$ & $0.976$ & $-0.016$ & $-0.071^{***}$ & $-0.010$ & $-0.053$ \\
+ & (0.159) & (0.251) & (0.206) & (0.617) & (0.011) & (0.024) & (0.012) & (0.034) \\
+Countries & 151 & 104 & 92 & 58 & 150 & 104 & 91 & 58 \\
 \midrule
-\multicolumn{5}{l}{\textit{Panel B: Excluding Asia}} \\
-Raw (levels) & $2.179^{**}$ & $4.831^{**}$ & $2.601^{***}$ & $13.534^{**}$ \\
- & (0.844) & (2.255) & (0.918) & (6.120) \\
-Winsorized & $1.739^{***}$ & $3.128^{***}$ & $2.075^{***}$ & $7.790^{**}$ \\
- & (0.628) & (1.172) & (0.721) & (3.002) \\
-Winsorized, log & $1.738^{***}$ & $3.048^{***}$ & $2.004^{***}$ & $7.370^{**}$ \\
- & (0.624) & (1.124) & (0.713) & (2.882) \\
-Winsorized, IHS & $0.553^{***}$ & $0.772^{**}$ & $0.661^{***}$ & $1.867^{**}$ \\
- & (0.174) & (0.296) & (0.229) & (0.781) \\
-Countries & 132 & 87 & 82 & 50 \\
+\multicolumn{9}{l}{\textit{Panel B: Excluding Asia}} \\
+Raw (levels) & $2.179^{**}$ & $4.831^{**}$ & $2.601^{***}$ & $13.534^{**}$ & $-0.059$ & $-0.269^{***}$ & $-0.022$ & $-0.054$ \\
+ & (0.844) & (2.255) & (0.918) & (6.120) & (0.040) & (0.082) & (0.041) & (0.232) \\
+Winsorized & $1.739^{***}$ & $3.128^{***}$ & $2.075^{***}$ & $7.790^{**}$ & $-0.047$ & $-0.243^{***}$ & $-0.018$ & $-0.100$ \\
+ & (0.628) & (1.172) & (0.721) & (3.002) & (0.036) & (0.072) & (0.039) & (0.135) \\
+Winsorized, log & $1.738^{***}$ & $3.048^{***}$ & $2.004^{***}$ & $7.370^{**}$ & $-0.051$ & $-0.250^{***}$ & $-0.021$ & $-0.107$ \\
+ & (0.624) & (1.124) & (0.713) & (2.882) & (0.036) & (0.074) & (0.038) & (0.132) \\
+Winsorized, IHS & $0.553^{***}$ & $0.772^{**}$ & $0.661^{***}$ & $1.867^{**}$ & $-0.019^{*}$ & $-0.084^{***}$ & $-0.012$ & $-0.053$ \\
+ & (0.174) & (0.296) & (0.229) & (0.781) & (0.011) & (0.026) & (0.012) & (0.041) \\
+Countries & 132 & 87 & 82 & 50 & 131 & 87 & 81 & 50 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \par\vspace{4pt}
-\begin{minipage}{\textwidth}\footnotesize Each cell is the DiD coefficient (treatment group $\times$ Post) from a separate two-way fixed effects regression with country and year fixed effects; Post = 1 from 2004 for every country. Adjusted columns add the 11 baseline (2003) covariates of Crown et al.\ (2023), each interacted with Post. Raw: growth in \% as reported. Winsorized: values outside the 1st--99th percentiles of the full panel set to those percentiles. Winsorized, log: $100\ln(1 + w/100)$ of the winsorized growth rate $w$, the growth rate in log points. Winsorized, IHS: $\sinh^{-1}(w) = \ln(w + \sqrt{w^2+1})$. Panel B drops East, Southeast and South Asia (20 countries, 14 of them PEPFAR recipients and 5 COP) so that the 1997--98 Asian financial crisis cannot drive the before/after comparison. Sample 1990--2022; controls are the 64 comparison countries valid through 2022. Standard errors clustered by country in parentheses. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.\end{minipage}
+\begin{minipage}{\textwidth}\footnotesize Each cell is the coefficient on treatment $\times$ Post from a separate two-way fixed effects regression with country and year fixed effects; Post = 1 from 2004 for every country. Columns (1)--(4): treatment is the 0/1 PEPFAR (or COP) group dummy. Columns (5)--(8): treatment is HIV prevalence among ages 15--49 in 2003 (percentage points), in the same samples, so the coefficient is the post-2004 change in growth per percentage point of baseline HIV prevalence. Adjusted columns add the 11 baseline (2003) covariates of Crown et al.\ (2023), each interacted with Post (columns (6) and (8) leave out HIV prevalence, which is the treatment there). Raw: growth in \% as reported. Winsorized: values outside the 1st--99th percentiles of the full panel set to those percentiles. Winsorized, log: $100\ln(1 + w/100)$ of the winsorized growth rate $w$, the growth rate in log points. Winsorized, IHS: $\sinh^{-1}(w) = \ln(w + \sqrt{w^2+1})$. Panel B drops East, Southeast and South Asia (20 countries, 14 of them PEPFAR recipients and 5 COP) so that the 1997--98 Asian financial crisis cannot drive the before/after comparison. Sample 1990--2022; controls are the 64 comparison countries valid through 2022. Standard errors clustered by country in parentheses. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.\end{minipage}
 \end{table}

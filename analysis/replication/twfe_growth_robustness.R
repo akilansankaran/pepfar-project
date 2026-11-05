@@ -24,6 +24,12 @@
 #     Winsorized, IHS  asinh(w) = log(w + sqrt(w^2 + 1)) of the winsorized growth rate;
 #                      like a log for large values, defined for zero and negatives
 #
+#   Treatment: the 0/1 PEPFAR (or COP) dummy, and HIV intensity: HIV prevalence ages 15-49
+#   in 2003 (bl_hiv_prev, already % of population), fixed before PEPFAR so PEPFAR's own
+#   effect on prevalence cannot feed back into it. Same intensity variable as the Kates
+#   trend breaks (trend_break_mortality.R). PEPFAR money went mostly to high-HIV countries,
+#   so if PEPFAR raised growth the effect should scale with baseline HIV prevalence.
+#
 #   Samples: all PEPFAR (90) or COP (31) vs. the 64 comparison countries; and the same
 #   samples excluding Asia, so that the 1997-98 Asian financial crisis, which hit just
 #   before PEPFAR began, cannot drive the before/after comparison.
@@ -46,11 +52,6 @@ growth_outcomes <- c(gdp_pc_growth = "GDP per capita growth",
 asia <- c("AFG", "BGD", "BTN", "CHN", "IDN", "IND", "KHM", "LAO", "LKA", "MDV",
           "MMR", "MNG", "MYS", "NPL", "PAK", "PHL", "PRK", "THA", "TLS", "VNM")
 
-winsor <- function(x, p = 0.01) {
-  q <- quantile(x, c(p, 1 - p), na.rm = TRUE)
-  pmin(pmax(x, q[1]), q[2])
-}
-
 transforms <- c(raw = "Raw (levels)", win = "Winsorized",
                 winlog = "Winsorized, log", winihs = "Winsorized, IHS")
 panel_t <- panel
@@ -65,45 +66,37 @@ for (y in names(growth_outcomes)) {
 samples_list <- c(full = "All countries", noasia = "Excluding Asia")
 specs        <- c(unadj = "Unadjusted", adj = "Adjusted")
 
-run_twfe <- function(d, yvar, adjusted) {
-  rhs <- "treat:post"
-  if (adjusted) {
-    rhs <- c(rhs, paste0(bl_cont, ":post"), "i(bl_wb_income, post, ref = 'L')")
-  }
-  feols(as.formula(paste(yvar, "~", paste(rhs, collapse = " + "), "| iso3c + year")),
-        data = d, cluster = ~iso3c)
-}
-
 res <- list()
 for (s in names(samples_list)) for (g in groups) {
   d <- make_sample(g, data = panel_t)
   if (s == "noasia") d <- filter(d, !iso3c %in% asia)
-  for (y in names(growth_outcomes)) for (tr in names(transforms)) for (sp in names(specs)) {
-    yvar <- paste0(y, "__", tr)
-    m <- run_twfe(d, yvar, adjusted = sp == "adj")
-    ct <- coeftable(m)["treat:post", ]
-    res[[length(res) + 1]] <- tibble(
-      outcome = y, sample = s, group = g, transform = tr, spec = sp,
-      est = ct[["Estimate"]], se = ct[["Std. Error"]], p = ct[["Pr(>|t|)"]],
-      n_obs = nobs(m), n_countries = n_countries(m, d),
-      n_treated = length(unique(d$iso3c[obs(m)][d$treat[obs(m)] == 1])))
-  }
+  for (tv in names(treatments)) for (y in names(growth_outcomes))
+    for (tr in names(transforms)) for (sp in names(specs)) {
+      m  <- run_twfe_post(d, paste0(y, "__", tr), tvar = tv, adjusted = sp == "adj")
+      ct <- coeftable(m)[paste0(tv, ":post"), ]
+      res[[length(res) + 1]] <- tibble(
+        outcome = y, sample = s, group = g, treatment = tv, transform = tr, spec = sp,
+        est = ct[["Estimate"]], se = ct[["Std. Error"]], p = ct[["Pr(>|t|)"]],
+        n_obs = nobs(m), n_countries = n_countries(m, d))
+    }
 }
 res <- bind_rows(res)
 write_csv(res, file.path(out_dir, "twfe_growth_robustness.csv"))
 
-# ---- LaTeX: one table per outcome. Columns: group x spec. Panels: full / no Asia ----
-cols <- expand.grid(spec = names(specs), group = groups, stringsAsFactors = FALSE)
+# ---- LaTeX: one table per outcome. Columns: treatment x group x spec. Panels: full / no Asia ----
+cols <- expand.grid(spec = names(specs), group = groups, treatment = names(treatments),
+                    stringsAsFactors = FALSE)
 cell <- function(y, s, tr, what) {
   sapply(seq_len(nrow(cols)), \(j) {
-    r <- filter(res, outcome == y, sample == s, transform == tr,
+    r <- filter(res, outcome == y, sample == s, transform == tr, treatment == cols$treatment[j],
                 group == cols$group[j], spec == cols$spec[j])
     if (what == "coef") tex_coef(r$est, r$p) else tex_se(r$se)
   })
 }
 countries <- function(y, s) {
   sapply(seq_len(nrow(cols)), \(j) {
-    n <- filter(res, outcome == y, sample == s, group == cols$group[j], spec == cols$spec[j])$n_countries
+    n <- filter(res, outcome == y, sample == s, treatment == cols$treatment[j],
+                group == cols$group[j], spec == cols$spec[j])$n_countries
     if (min(n) == max(n)) as.character(n[1]) else paste0(min(n), "--", max(n))
   })
 }
@@ -112,7 +105,7 @@ for (y in names(growth_outcomes)) {
   rows <- list()
   for (s in names(samples_list)) {
     if (s == "noasia") rows[[length(rows) + 1]] <- "\\midrule"
-    rows[[length(rows) + 1]] <- sprintf("\\multicolumn{5}{l}{\\textit{Panel %s: %s}} \\\\",
+    rows[[length(rows) + 1]] <- sprintf("\\multicolumn{9}{l}{\\textit{Panel %s: %s}} \\\\",
                                         if (s == "full") "A" else "B", samples_list[[s]])
     for (tr in names(transforms)) {
       rows[[length(rows) + 1]] <- c(transforms[[tr]], cell(y, s, tr, "coef"))
@@ -123,19 +116,25 @@ for (y in names(growth_outcomes)) {
   write_tex_table(
     file    = file.path(out_dir, paste0("twfe_robustness_", y, ".tex")),
     caption = paste0("PEPFAR and ", growth_outcomes[[y]],
-                     ": two-way fixed effects under outcome transformations and without Asia"),
+                     ": two-way fixed effects with the PEPFAR dummy and HIV intensity, under outcome transformations and without Asia"),
     label   = paste0("tab:crown_twfe_robust_", y),
-    head    = list(c("", "\\multicolumn{2}{c}{All PEPFAR vs.\\ controls}",
-                     "\\multicolumn{2}{c}{COP vs.\\ controls}"),
-                   "\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}",
-                   c("", "Unadjusted", "Adjusted", "Unadjusted", "Adjusted"),
-                   c("", "(1)", "(2)", "(3)", "(4)")),
+    head    = list(c("", sprintf("\\multicolumn{4}{c}{Treatment: %s}", treatments)),
+                   "\\cmidrule(lr){2-5} \\cmidrule(lr){6-9}",
+                   c("", rep(c("\\multicolumn{2}{c}{All PEPFAR sample}",
+                               "\\multicolumn{2}{c}{COP sample}"), 2)),
+                   "\\cmidrule(lr){2-3} \\cmidrule(lr){4-5} \\cmidrule(lr){6-7} \\cmidrule(lr){8-9}",
+                   c("", rep(c("Unadj.", "Adj."), 4)),
+                   c("", sprintf("(%d)", 1:8))),
     rows    = rows,
     notes   = paste(
-      "Each cell is the DiD coefficient (treatment group $\\times$ Post) from a separate two-way fixed",
-      "effects regression with country and year fixed effects; Post = 1 from 2004 for every country.",
+      "Each cell is the coefficient on treatment $\\times$ Post from a separate two-way fixed effects",
+      "regression with country and year fixed effects; Post = 1 from 2004 for every country.",
+      "Columns (1)--(4): treatment is the 0/1 PEPFAR (or COP) group dummy. Columns (5)--(8): treatment",
+      "is HIV prevalence among ages 15--49 in 2003 (percentage points), in the same samples, so the",
+      "coefficient is the post-2004 change in growth per percentage point of baseline HIV prevalence.",
       "Adjusted columns add the 11 baseline (2003) covariates of Crown et al.\\ (2023), each interacted",
-      "with Post. Raw: growth in \\% as reported. Winsorized: values outside the 1st--99th percentiles of",
+      "with Post (columns (6) and (8) leave out HIV prevalence, which is the treatment there).",
+      "Raw: growth in \\% as reported. Winsorized: values outside the 1st--99th percentiles of",
       "the full panel set to those percentiles. Winsorized, log: $100\\ln(1 + w/100)$ of the winsorized",
       "growth rate $w$, the growth rate in log points. Winsorized, IHS: $\\sinh^{-1}(w) = \\ln(w + \\sqrt{w^2+1})$.",
       "Panel B drops East, Southeast and South Asia (20 countries, 14 of them PEPFAR recipients and 5 COP)",
@@ -143,7 +142,7 @@ for (y in names(growth_outcomes)) {
       "Sample 1990--2022; controls are the 64 comparison countries valid through 2022.",
       "Standard errors clustered by country in parentheses.",
       "$^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$."),
-    align   = "lcccc", resize = FALSE)
+    align   = "lcccccccc", resize = TRUE)
 }
 
 cat("TWFE growth robustness done. Output in", out_dir, "\n")
