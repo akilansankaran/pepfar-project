@@ -1,5 +1,7 @@
 # PEPFAR and Growth Study
 
+By Emma Zhang (Project Lead), Akilan Sankaran (Co-Director of Research), Rishad Vaghaiwalla, Anthony Babu, Gemma Rothchild, Rachel Yin, and Cloris Shi (Analysts)
+
 This repository holds the data pipeline and analysis code for a study of how the President's Emergency Plan for AIDS Relief (PEPFAR) affected economic growth and individual economic expectations in countries affected by HIV/AIDS. 
 
 The study begins from the country-level evidence of Crown et al. (2023) and Kates et al. (2026), who find growth gains in PEPFAR recipients using
