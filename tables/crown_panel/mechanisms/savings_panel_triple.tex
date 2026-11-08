@@ -1,0 +1,42 @@
+\begin{table}[htbp]
+\centering
+\small
+\caption{Gross domestic savings (\% of GDP): HIV prevalence $\times$ PEPFAR $\times$ Post, two-way fixed effects}
+\label{tab:crown_mech_savings_triple}
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{All PEPFAR sample} & \multicolumn{2}{c}{COP sample} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ & Unadj. & Adj. & Unadj. & Adj. \\
+ & (1) & (2) & (3) & (4) \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel A: HIV $\times$ PEPFAR $\times$ Post}} \\
+Raw & $6.640$ & $6.981$ & $6.723$ & $2.719$ \\
+ & (7.804) & (9.417) & (8.073) & (7.804) \\
+Winsorized & $6.695$ & $8.672$ & $6.680$ & $3.012$ \\
+ & (7.790) & (9.326) & (8.037) & (7.746) \\
+Winsorized, IHS & $0.304$ & $0.869$ & $0.295$ & $0.063$ \\
+ & (0.631) & (1.254) & (0.655) & (1.080) \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel B: HIV $\times$ Post (comparison countries), same regressions as A}} \\
+Raw & $-7.144$ & $-7.698$ & $-7.316$ & $-3.021$ \\
+ & (7.802) & (9.307) & (8.072) & (7.722) \\
+Winsorized & $-7.144$ & $-9.419$ & $-7.273$ & $-3.338$ \\
+ & (7.789) & (9.218) & (8.036) & (7.663) \\
+Winsorized, IHS & $-0.357$ & $-0.931$ & $-0.368$ & $-0.076$ \\
+ & (0.629) & (1.241) & (0.653) & (1.062) \\
+Countries & 133 & 97 & 78 & 53 \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel C: HIV $\times$ PEPFAR $\times$ Post, without HIV $\times$ Post}} \\
+Raw & $-0.503^{***}$ & $-0.713$ & $-0.593^{***}$ & $-0.302$ \\
+ & (0.176) & (0.434) & (0.193) & (0.352) \\
+Winsorized & $-0.448^{***}$ & $-0.743^{*}$ & $-0.592^{***}$ & $-0.326$ \\
+ & (0.171) & (0.429) & (0.193) & (0.347) \\
+Winsorized, IHS & $-0.053$ & $-0.061$ & $-0.073$ & $-0.013$ \\
+ & (0.046) & (0.058) & (0.054) & (0.061) \\
+Countries & 133 & 97 & 78 & 53 \\
+\bottomrule
+\end{tabular}
+\par\vspace{4pt}
+\begin{minipage}{\textwidth}\footnotesize Two-way fixed effects regressions of gross domestic savings (\% of GDP; GDP minus final consumption, World Bank WDI) with country and year fixed effects; Post = 1 from 2004 for every country. HIV is HIV prevalence among ages 15--49 in 2003 (percentage points); PEPFAR is 1 for the treatment group of the column's sample (all PEPFAR recipients or COP countries) and 0 for the 64 comparison countries valid through 2022, of which the 61 with 2003 HIV data are used. Panel A: coefficient on HIV $\times$ PEPFAR $\times$ Post from regressions that also include HIV $\times$ Post and PEPFAR $\times$ Post. Panel B: coefficient on HIV $\times$ Post from the same regressions, the HIV gradient among comparison countries. In 2003, 60 of the 61 comparison countries had HIV prevalence under 1\% (median 0.1\%); the exception, Equatorial Guinea (3.8\%), has savings data only from 2005. Panel C: Panel A without HIV $\times$ Post, so the comparison countries' HIV gradient is set to zero. Adjusted columns add the baseline (2003) covariates of Crown et al.\ (2023) other than HIV prevalence, each interacted with Post, and World Bank income group $\times$ Post. Winsorized: values outside the 1st--99th percentiles of the full panel set to those percentiles. IHS: $\sinh^{-1}(w)$ of the winsorized value, defined for the negative savings rates some countries record. Standard errors clustered by country in parentheses. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.\end{minipage}
+\end{table}
