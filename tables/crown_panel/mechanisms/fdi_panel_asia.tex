@@ -1,0 +1,90 @@
+\begin{table}[htbp]
+\centering
+\caption{Investment mechanism: FDI, saving and investment after PEPFAR, two-way fixed effects, with and without Asia}
+\label{tab:crown_mech_fdi_asia}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccccc}
+\toprule
+ & \multicolumn{4}{c}{Treatment: PEPFAR group $\times$ Post} & \multicolumn{4}{c}{Treatment: HIV prevalence 2003 $\times$ Post} \\
+\cmidrule(lr){2-5} \cmidrule(lr){6-9}
+ & \multicolumn{2}{c}{All PEPFAR sample} & \multicolumn{2}{c}{COP sample} & \multicolumn{2}{c}{All PEPFAR sample} & \multicolumn{2}{c}{COP sample} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+ & Unadj. & Adj. & Unadj. & Adj. & Unadj. & Adj. & Unadj. & Adj. \\
+ & (1) & (2) & (3) & (4) & (5) & (6) & (7) & (8) \\
+\midrule
+\multicolumn{9}{l}{\textit{FDI, net inflows (\% of GDP) --- All countries}} \\
+Raw & $0.649$ & $3.311$ & $-0.204$ & $4.168$ & $-0.063$ & $0.018$ & $-0.050$ & $0.212$ \\
+ & (0.933) & (2.311) & (1.097) & (5.500) & (0.051) & (0.131) & (0.052) & (0.223) \\
+Winsorized & $0.242$ & $1.560$ & $-0.499$ & $0.390$ & $-0.049$ & $0.028$ & $-0.042$ & $0.098$ \\
+ & (0.598) & (1.255) & (0.799) & (2.658) & (0.045) & (0.116) & (0.047) & (0.165) \\
+Winsorized, IHS & $0.109$ & $0.338$ & $-0.114$ & $-0.026$ & $-0.014$ & $-0.012$ & $-0.012$ & $0.017$ \\
+ & (0.140) & (0.241) & (0.196) & (0.452) & (0.011) & (0.030) & (0.012) & (0.041) \\
+Countries & 148 & 104 & 89 & 58 & 147 & 104 & 88 & 58 \\
+\midrule
+\multicolumn{9}{l}{\textit{FDI, net inflows (\% of GDP) --- Excluding Asia}} \\
+Raw & $1.044$ & $5.034^{*}$ & $-0.013$ & $10.135$ & $-0.065$ & $0.047$ & $-0.040$ & $0.387$ \\
+ & (1.011) & (2.937) & (1.213) & (7.478) & (0.051) & (0.140) & (0.051) & (0.313) \\
+Winsorized & $0.594$ & $2.708^{*}$ & $-0.330$ & $3.421$ & $-0.051$ & $0.050$ & $-0.033$ & $0.182$ \\
+ & (0.624) & (1.444) & (0.876) & (3.194) & (0.045) & (0.119) & (0.047) & (0.207) \\
+Winsorized, IHS & $0.159$ & $0.499$ & $-0.131$ & $0.363$ & $-0.015$ & $-0.010$ & $-0.011$ & $0.031$ \\
+ & (0.152) & (0.302) & (0.220) & (0.532) & (0.011) & (0.032) & (0.012) & (0.054) \\
+Countries & 129 & 87 & 79 & 50 & 128 & 87 & 78 & 50 \\
+\midrule
+\multicolumn{9}{l}{\textit{FDI, net inflows per person (constant 2022 US\$) --- All countries}} \\
+Raw & $-218.608^{***}$ & $65.438$ & $-293.161^{***}$ & $49.867$ & $-13.057^{***}$ & $-18.659^{***}$ & $-14.455^{***}$ & $-16.856^{**}$ \\
+ & (70.147) & (54.454) & (67.164) & (75.528) & (3.189) & (4.739) & (3.766) & (6.466) \\
+Winsorized & $-167.477^{***}$ & $46.848$ & $-235.622^{***}$ & $40.377$ & $-11.082^{***}$ & $-17.389^{***}$ & $-11.958^{***}$ & $-16.909^{**}$ \\
+ & (47.603) & (47.862) & (45.651) & (86.673) & (2.335) & (4.668) & (2.566) & (6.529) \\
+Winsorized, IHS & $0.205$ & $0.880^{**}$ & $-0.134$ & $0.406$ & $-0.021$ & $-0.035$ & $-0.017$ & $0.021$ \\
+ & (0.289) & (0.443) & (0.404) & (0.691) & (0.022) & (0.061) & (0.024) & (0.088) \\
+Countries & 149 & 104 & 90 & 58 & 148 & 104 & 89 & 58 \\
+\midrule
+\multicolumn{9}{l}{\textit{FDI, net inflows per person (constant 2022 US\$) --- Excluding Asia}} \\
+Raw & $-216.789^{***}$ & $77.227$ & $-307.592^{***}$ & $76.144$ & $-14.498^{***}$ & $-19.580^{***}$ & $-15.536^{***}$ & $-18.290^{**}$ \\
+ & (77.363) & (59.699) & (73.743) & (76.923) & (3.569) & (5.119) & (4.188) & (7.853) \\
+Winsorized & $-157.814^{***}$ & $62.408$ & $-240.934^{***}$ & $73.947$ & $-12.133^{***}$ & $-18.030^{***}$ & $-12.520^{***}$ & $-19.096^{**}$ \\
+ & (50.971) & (48.521) & (48.618) & (91.431) & (2.537) & (5.004) & (2.712) & (8.275) \\
+Winsorized, IHS & $0.198$ & $1.114^{*}$ & $-0.322$ & $0.829$ & $-0.018$ & $-0.021$ & $-0.011$ & $0.068$ \\
+ & (0.324) & (0.571) & (0.453) & (0.837) & (0.023) & (0.065) & (0.025) & (0.113) \\
+Countries & 129 & 87 & 79 & 50 & 128 & 87 & 78 & 50 \\
+\midrule
+\multicolumn{9}{l}{\textit{Gross domestic savings (\% of GDP) --- All countries}} \\
+Raw & $-0.926$ & $5.291$ & $-2.224$ & $4.609$ & $-0.491^{***}$ & $-0.735$ & $-0.510^{***}$ & $-0.266$ \\
+ & (1.915) & (3.337) & (2.163) & (3.262) & (0.155) & (0.444) & (0.158) & (0.348) \\
+Winsorized & $-1.395$ & $5.193^{*}$ & $-2.209$ & $4.506$ & $-0.459^{***}$ & $-0.765^{*}$ & $-0.509^{***}$ & $-0.292$ \\
+ & (1.820) & (3.126) & (2.145) & (3.175) & (0.154) & (0.438) & (0.158) & (0.343) \\
+Winsorized, IHS & $-0.095$ & $0.623$ & $-0.169$ & $0.444$ & $-0.052$ & $-0.063$ & $-0.057$ & $-0.009$ \\
+ & (0.253) & (0.525) & (0.348) & (0.577) & (0.043) & (0.059) & (0.044) & (0.059) \\
+Countries & 134 & 97 & 79 & 53 & 133 & 97 & 78 & 53 \\
+\midrule
+\multicolumn{9}{l}{\textit{Gross domestic savings (\% of GDP) --- Excluding Asia}} \\
+Raw & $-1.663$ & $8.478^{*}$ & $-3.843^{*}$ & $5.540$ & $-0.445^{***}$ & $-0.635$ & $-0.478^{***}$ & $-0.052$ \\
+ & (2.063) & (4.338) & (2.273) & (4.699) & (0.162) & (0.479) & (0.166) & (0.339) \\
+Winsorized & $-1.783$ & $7.976^{*}$ & $-3.822^{*}$ & $5.541$ & $-0.435^{***}$ & $-0.657$ & $-0.476^{***}$ & $-0.077$ \\
+ & (2.021) & (4.145) & (2.251) & (4.564) & (0.162) & (0.472) & (0.165) & (0.333) \\
+Winsorized, IHS & $-0.140$ & $0.901$ & $-0.346$ & $0.068$ & $-0.051$ & $-0.058$ & $-0.054$ & $0.014$ \\
+ & (0.287) & (0.658) & (0.384) & (0.944) & (0.043) & (0.064) & (0.045) & (0.062) \\
+Countries & 116 & 81 & 70 & 46 & 115 & 81 & 69 & 46 \\
+\midrule
+\multicolumn{9}{l}{\textit{Gross fixed capital formation (\% of GDP) --- All countries}} \\
+Raw & $2.122^{*}$ & $1.222$ & $2.041$ & $1.627$ & $-0.134$ & $-0.466^{*}$ & $-0.095$ & $-0.222$ \\
+ & (1.192) & (1.876) & (1.924) & (2.556) & (0.125) & (0.246) & (0.133) & (0.364) \\
+Winsorized & $2.197^{*}$ & $1.607$ & $2.122$ & $2.107$ & $-0.136$ & $-0.453^{*}$ & $-0.088$ & $-0.207$ \\
+ & (1.161) & (1.792) & (1.906) & (2.571) & (0.123) & (0.236) & (0.133) & (0.355) \\
+Winsorized, IHS & $0.123^{*}$ & $0.117$ & $0.110$ & $0.106$ & $-0.010$ & $-0.034^{**}$ & $-0.008$ & $-0.026$ \\
+ & (0.067) & (0.107) & (0.108) & (0.155) & (0.009) & (0.014) & (0.009) & (0.021) \\
+Countries & 131 & 93 & 75 & 49 & 130 & 93 & 74 & 49 \\
+\midrule
+\multicolumn{9}{l}{\textit{Gross fixed capital formation (\% of GDP) --- Excluding Asia}} \\
+Raw & $2.055$ & $1.362$ & $1.406$ & $2.867$ & $-0.107$ & $-0.376$ & $-0.070$ & $-0.038$ \\
+ & (1.252) & (2.241) & (2.222) & (3.775) & (0.130) & (0.230) & (0.135) & (0.332) \\
+Winsorized & $2.045^{*}$ & $1.656$ & $1.389$ & $2.896$ & $-0.113$ & $-0.365$ & $-0.069$ & $-0.026$ \\
+ & (1.231) & (2.168) & (2.211) & (3.776) & (0.127) & (0.222) & (0.135) & (0.329) \\
+Winsorized, IHS & $0.123$ & $0.107$ & $0.085$ & $0.158$ & $-0.010$ & $-0.031^{**}$ & $-0.008$ & $-0.017$ \\
+ & (0.074) & (0.128) & (0.127) & (0.228) & (0.009) & (0.015) & (0.009) & (0.021) \\
+Countries & 113 & 77 & 66 & 42 & 112 & 77 & 65 & 42 \\
+\bottomrule
+\end{tabular}}
+\par\vspace{4pt}
+\begin{minipage}{\textwidth}\footnotesize Each cell is the coefficient on treatment $\times$ Post from a separate two-way fixed effects regression with country and year fixed effects; Post = 1 from 2004 for every country. Columns (1)--(4): treatment is the 0/1 PEPFAR (or COP) group dummy. Columns (5)--(8): treatment is HIV prevalence among ages 15--49 in 2003 (percentage points). Adjusted columns add the 11 baseline (2003) covariates of Crown et al.\ (2023), each interacted with Post (columns (6) and (8) leave out HIV prevalence, which is the treatment there). \textit{Excluding Asia} drops East, Southeast and South Asia (20 countries; same list as the Crown DiD robustness table) so the 1997--98 Asian financial crisis cannot drive the before/after comparison. Outcomes from the World Bank WDI; FDI per person is net inflows in current US\$ deflated to 2022 dollars with the US GDP deflator and divided by UN WPP population. Winsorized: values outside the 1st--99th percentiles of the full panel set to those percentiles. IHS: $\sinh^{-1}(w)$ of the winsorized value. Sample 1990--2022; controls are the 64 comparison countries valid through 2022. Standard errors clustered by country in parentheses. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.\end{minipage}
+\end{table}
