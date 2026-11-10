@@ -154,6 +154,36 @@ run_twfe_post <- function(d, yvar, tvar = "treat", adjusted = FALSE) {
         data = d, cluster = ~iso3c)
 }
 
+# Triple interaction: does the post-2004 change scale with baseline HIV more in the
+# treatment group than in the controls?
+# Y_it = a_i + g_t + b3 (HIV_i x T_i x Post_t) + b1 (HIV_i x Post_t) + b2 (T_i x Post_t)
+#        [+ X_i x Post_t] + e_it
+# HIV_i = bl_hiv_prev, T_i = treat. HIV_i, T_i and HIV_i x T_i are absorbed by the country
+# FE and Post_t by the year FE. b3 (hiv_treat_post) is the coefficient reported. b1 is
+# estimated from the controls alone, almost all of which have prevalence under 1%; the one
+# exception, Equatorial Guinea (3.8%), therefore carries a lot of weight in b1 and b3.
+run_twfe_triple_post <- function(d, yvar, adjusted = FALSE) {
+  d <- mutate(d, hiv_treat_post = bl_hiv_prev * treat * post,
+                 hiv_post       = bl_hiv_prev * post,
+                 treat_post     = treat * post)
+  rhs <- c("hiv_treat_post", "hiv_post", "treat_post")
+  if (adjusted) {
+    rhs <- c(rhs, paste0(setdiff(bl_cont, "bl_hiv_prev"), ":post"), "i(bl_wb_income, post, ref = 'L')")
+  }
+  feols(as.formula(paste(yvar, "~", paste(rhs, collapse = " + "), "| iso3c + year")),
+        data = d, cluster = ~iso3c)
+}
+
+# From a run_twfe_triple_post model: b1, the controls' HIV gradient, and b1 + b3, the HIV
+# gradient among treated countries (what the triple term is measured against)
+triple_parts <- function(m) {
+  b <- coef(m); V <- vcov(m)
+  s_se <- sqrt(V["hiv_post", "hiv_post"] + V["hiv_treat_post", "hiv_treat_post"] +
+                 2 * V["hiv_post", "hiv_treat_post"])
+  c(b1 = b[["hiv_post"]], b1_se = sqrt(V["hiv_post", "hiv_post"]),
+    slope_treated = b[["hiv_post"]] + b[["hiv_treat_post"]], slope_treated_se = s_se)
+}
+
 # Treatment versions for run_twfe_post, with LaTeX labels
 treatments <- c(treat       = "PEPFAR group $\\times$ Post",
                 bl_hiv_prev = "HIV prevalence 2003 $\\times$ Post")
