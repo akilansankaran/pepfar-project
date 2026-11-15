@@ -12,7 +12,7 @@ tables/
 │   ├── growth_robustness/          GDP (pc) growth: raw / winsorized / winsorized log / winsorized IHS, with and without Asia;
 │   │                               PEPFAR dummy x Post and HIV x PEPFAR x Post; panels: all / no Asia / no Equatorial Guinea ← analysis/replication/twfe_growth_robustness.R (Anthony)
 │   └── mechanisms/                 FDI, saving and investment, same TWFE spec          ← analysis/mechanisms/fdi_panel.R (Anthony)
-│                                   savings_levels_triple: gross savings + GFCF per person, triple interaction ← analysis/mechanisms/savings_levels_triple.R (Anthony)
+│                                   savings_levels/totals_triple: gross savings + GFCF per person and in total, triple interaction ← analysis/mechanisms/savings_levels_triple.R (Anthony)
 ├── crown_event_studies/            Crown economic outcomes, year-by-year
 │   ├── adjusted/                   adjusted event studies: tex/ figures/ csv/  ← analysis/parallel_trends/event_study_econ_adjusted.R (Anthony)
 │   └── robustness/                 unadjusted, linear trends, Sun–Abraham, etc. ← analysis/parallel_trends/event_study_economic.R      (Anthony)
@@ -70,6 +70,7 @@ and, for the investment mechanism (FDI, saving, investment):
 ```latex
 \input{crown_panel/mechanisms/fdi_panel}
 \input{crown_panel/mechanisms/savings_levels_triple}
+\input{crown_panel/mechanisms/savings_totals_triple}
 ```
 
 The mechanism outcomes are not in the main panel; `data_pull/pull_wdi_mechanisms.R` pulls them from the WDI into `data/intermediate/wdi_mechanisms_1990_2022.csv`.
