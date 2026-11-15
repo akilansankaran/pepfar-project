@@ -1,0 +1,40 @@
+\begin{table}[htbp]
+\centering
+\caption{Linear trend breaks in maternal mortality: break in 2004 vs.\ 2008}
+\label{tab:trend_break_maternal_2008}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+ & \multicolumn{2}{c}{All PEPFAR} & \multicolumn{2}{c}{COP} & \multicolumn{2}{c}{HIV prevalence 2003} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+ & Unadj. & Adj. & Unadj. & Adj. & Unadj. & Adj. \\
+ & (1) & (2) & (3) & (4) & (5) & (6) \\
+\midrule
+\multicolumn{7}{l}{\textit{Break in 2004}} \\
+$X_i \times (t-1990)$ \quad [$\gamma_1$] & $-10.877^{***}$ & $1.708$ & $-13.453^{**}$ & $1.284$ & $-0.076$ & $1.264^{*}$ \\
+ & (2.443) & (3.213) & (5.300) & (6.890) & (0.505) & (0.669) \\
+$X_i \times (t-B) \times \mathrm{Post}_t$ \quad [$\gamma_2$] & $4.131^{*}$ & $-3.653$ & $4.049$ & $-6.092$ & $-0.657$ & $-1.052$ \\
+ & (2.207) & (3.122) & (5.368) & (7.735) & (0.538) & (0.734) \\
+$X_i \times \mathrm{Post}_t$ \quad [$\gamma_4$] & $20.631^{**}$ & $-3.264$ & $67.542^{***}$ & $26.102$ & $9.702^{***}$ & $11.744^{***}$ \\
+ & (8.582) & (7.352) & (19.921) & (27.142) & (2.520) & (3.737) \\
+F-test: $\gamma_1 + \gamma_2 = 0$ & 30.22 & 1.71 & 29.63 & 2.32 & 14.90 & 0.29 \\
+ & [0.000] & [0.194] & [0.000] & [0.133] & [0.000] & [0.591] \\
+Observations & 3,427 & 2,392 & 2,070 & 1,334 & 3,427 & 2,392 \\
+Countries & 149 & 104 & 90 & 58 & 149 & 104 \\
+\midrule
+\multicolumn{7}{l}{\textit{Break in 2008}} \\
+$X_i \times (t-1990)$ \quad [$\gamma_1$] & $-6.828^{***}$ & $-0.018$ & $-2.674$ & $4.318$ & $0.882^{**}$ & $2.302^{***}$ \\
+ & (2.076) & (2.535) & (4.146) & (5.412) & (0.433) & (0.754) \\
+$X_i \times (t-B) \times \mathrm{Post}_t$ \quad [$\gamma_2$] & $-1.571$ & $-1.603$ & $-11.466^{*}$ & $-9.542$ & $-2.365^{***}$ & $-2.997^{***}$ \\
+ & (2.460) & (2.699) & (5.989) & (8.378) & (0.724) & (1.093) \\
+$X_i \times \mathrm{Post}_t$ \quad [$\gamma_4$] & $25.900^{***}$ & $-9.781$ & $56.280^{***}$ & $-15.910$ & $7.582^{***}$ & $8.918^{**}$ \\
+ & (7.971) & (8.431) & (19.296) & (28.557) & (2.614) & (3.994) \\
+F-test: $\gamma_1 + \gamma_2 = 0$ & 30.28 & 1.06 & 23.60 & 1.33 & 15.76 & 1.46 \\
+ & [0.000] & [0.306] & [0.000] & [0.254] & [0.000] & [0.229] \\
+Observations & 3,427 & 2,392 & 2,070 & 1,334 & 3,427 & 2,392 \\
+Countries & 149 & 104 & 90 & 58 & 149 & 104 \\
+\bottomrule
+\end{tabular}}
+\par\vspace{4pt}
+\begin{minipage}{\textwidth}\footnotesize Estimates of $Y_{it} = \alpha_i + \gamma_t + \gamma_1 (X_i \times [t-1990]) + \gamma_2 (X_i \times [t-B] \times \mathrm{Post}_t) + \gamma_4 (X_i \times \mathrm{Post}_t) + \varepsilon_{it}$ with $\mathrm{Post}_t = 1$ from the break year $B$. Outcome: maternal deaths per 100,000 live births (WDI), 2000--2022. $X_i$ is the PEPFAR or COP indicator, or HIV prevalence among ages 15--49 in 2003 (per percentage point). Adjusted columns add the baseline (2003) covariates of Crown et al.\ (2023), each with its own coefficient in every year, and World Bank income group $\times$ year fixed effects (baseline HIV prevalence is left out of the controls in columns 5--6). The F-test (1, countries $-$ 1 df) is that the post-break trend $\gamma_1 + \gamma_2$ is zero; $p$-value in brackets. Standard errors clustered by country in parentheses. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.\end{minipage}
+\end{table}
