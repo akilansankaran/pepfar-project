@@ -1,0 +1,36 @@
+\begin{table}[htbp]
+\centering
+\caption{Best-fitting trend-break year by mortality outcome}
+\label{tab:break_year_sweep}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+ & \multicolumn{2}{c}{All PEPFAR} & \multicolumn{2}{c}{COP} & \multicolumn{2}{c}{HIV prevalence 2003} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+ & Unadj. & Adj. & Unadj. & Adj. & Unadj. & Adj. \\
+\midrule
+\multicolumn{7}{l}{\textit{Child mortality (under 5)}} \\
+Lowest-RSS break year, 2004 on & 2011 & 2010 & 2004 & 2009 & 2004 & 2004 \\
+Lowest-RSS break year, any & 2011 & 2010 & 2002 & 2009 & 2002 & 2003 \\
+sup-Wald year (F) & 2007 (9.4) & 2012 (1.5) & 2012 (17.6) & 2009 (5.2) & 2002 (36.8) & 2002 (8.2) \\
+RSS \% above best: 2004 & 0.040 & 0.014 & 0.106 & 0.015 & 0.059 & 0.004 \\
+RSS \% above best: 2008 & 0.091 & 0.014 & 0.598 & 0.040 & 0.281 & 0.084 \\
+\midrule
+\multicolumn{7}{l}{\textit{All-cause mortality}} \\
+Lowest-RSS break year, 2004 on & 2004 & 2010 & 2004 & 2009 & 2004 & 2005 \\
+Lowest-RSS break year, any & 2002 & 2010 & 2002 & 2002 & 2004 & 2005 \\
+sup-Wald year (F) & 2002 (4.9) & 2016 (2.8) & 2002 (8.6) & 2009 (2.8) & 2003 (49.6) & 2004 (12.3) \\
+RSS \% above best: 2004 & 0.016 & 0.004 & 0.028 & 0.002 & 0.000 & 0.004 \\
+RSS \% above best: 2008 & 0.068 & 0.007 & 0.145 & 0.006 & 0.141 & 0.013 \\
+\midrule
+\multicolumn{7}{l}{\textit{Maternal mortality}} \\
+Lowest-RSS break year, 2004 on & 2008 & 2006 & 2008 & 2009 & 2008 & 2012 \\
+Lowest-RSS break year, any & 2008 & 2006 & 2008 & 2009 & 2008 & 2012 \\
+sup-Wald year (F) & 2003 (6.8) & 2006 (1.3) & 2004 (7.9) & 2009 (2.2) & 2012 (12.3) & 2016 (6.0) \\
+RSS \% above best: 2004 & 0.295 & 0.006 & 3.629 & 0.040 & 6.285 & 5.094 \\
+RSS \% above best: 2008 & 0.000 & 0.004 & 0.000 & 0.008 & 0.000 & 0.078 \\
+\bottomrule
+\end{tabular}}
+\par\vspace{4pt}
+\begin{minipage}{\textwidth}\footnotesize Each cell refits $Y_{it} = \alpha_i + \gamma_t + \gamma_1 (X_i \times [t-1990]) + \gamma_2 (X_i \times [t-B] \times \mathrm{Post}_t) + \gamma_4 (X_i \times \mathrm{Post}_t) + \varepsilon_{it}$ for every break year $B$ from 2002 to 2016. Lowest-RSS year: least-squares estimate of the break date, restricted to 2004 or later (PEPFAR's first year) and unrestricted. sup-Wald: year with the largest joint Wald statistic for $\gamma_2 = \gamma_4 = 0$ (statistic in parentheses); compare with Andrews (1993) critical values, not the usual F distribution, since the break year is chosen by the data. RSS rows: percent by which the fit at 2004 and 2008 is worse than the best year. Samples and controls as in the trend-break tables; standard errors clustered by country.\end{minipage}
+\end{table}
