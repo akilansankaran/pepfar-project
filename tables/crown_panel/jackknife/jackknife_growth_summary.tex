@@ -1,0 +1,35 @@
+\begin{table}[htbp]
+\centering
+\caption{Jackknife: share of leave-one-country-out regressions significant at 10\%}
+\label{tab:crown_jackknife}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+ & Full sample & \multicolumn{4}{c}{Share significant at 10\%} & Range \\
+\cmidrule(lr){3-6}
+Regression & (raw) & Raw & Wins. & Wins., log & Wins., IHS & (raw) \\
+\midrule
+\multicolumn{7}{l}{\textbf{Panel A: GDP per capita growth}} \\
+PEPFAR $\times$ Post, All PEPFAR, Unadj. & $1.609^{**}$ & 100\% & 100\% & 100\% & 100\% & 1.12 to 1.84 \\
+PEPFAR $\times$ Post, All PEPFAR, Adj. & $3.282^{**}$ & 100\% & 100\% & 100\% & 100\% & 1.66 to 3.64 \\
+PEPFAR $\times$ Post, COP, Unadj. & $2.063^{**}$ & 100\% & 100\% & 100\% & 100\% & 1.57 to 2.29 \\
+PEPFAR $\times$ Post, COP, Adj. & $7.353^{*}$ & 98\% & 97\% & 97\% & 84\% & 2.64 to 8.83 \\
+HIV $\times$ PEPFAR $\times$ Post, All PEPFAR, Unadj. & $6.960^{***}$ & 99\% & 100\% & 100\% & 100\% & 2.54 to 7.19 \\
+HIV $\times$ PEPFAR $\times$ Post, All PEPFAR, Adj. & $6.736^{***}$ & 99\% & 99\% & 99\% & 99\% & 0.22 to 6.87 \\
+HIV $\times$ PEPFAR $\times$ Post, COP, Unadj. & $6.889^{***}$ & 99\% & 100\% & 100\% & 100\% & 2.41 to 7.12 \\
+HIV $\times$ PEPFAR $\times$ Post, COP, Adj. & $6.592^{***}$ & 98\% & 98\% & 98\% & 98\% & 0.04 to 6.86 \\
+\midrule
+\multicolumn{7}{l}{\textbf{Panel B: GDP growth}} \\
+PEPFAR $\times$ Post, All PEPFAR, Unadj. & $1.868^{**}$ & 100\% & 100\% & 100\% & 100\% & 1.35 to 2.11 \\
+PEPFAR $\times$ Post, All PEPFAR, Adj. & $3.572^{**}$ & 100\% & 100\% & 100\% & 100\% & 1.85 to 3.91 \\
+PEPFAR $\times$ Post, COP, Unadj. & $2.279^{***}$ & 100\% & 100\% & 100\% & 100\% & 1.77 to 2.52 \\
+PEPFAR $\times$ Post, COP, Adj. & $7.483^{*}$ & 64\% & 91\% & 90\% & 9\% & 2.35 to 9.10 \\
+HIV $\times$ PEPFAR $\times$ Post, All PEPFAR, Unadj. & $7.301^{***}$ & 99\% & 100\% & 100\% & 100\% & 2.95 to 7.53 \\
+HIV $\times$ PEPFAR $\times$ Post, All PEPFAR, Adj. & $7.211^{***}$ & 99\% & 99\% & 99\% & 99\% & 1.21 to 7.36 \\
+HIV $\times$ PEPFAR $\times$ Post, COP, Unadj. & $7.234^{***}$ & 99\% & 100\% & 100\% & 100\% & 2.82 to 7.46 \\
+HIV $\times$ PEPFAR $\times$ Post, COP, Adj. & $7.241^{***}$ & 98\% & 98\% & 98\% & 98\% & 1.01 to 7.56 \\
+\bottomrule
+\end{tabular}}
+\par\vspace{4pt}
+\begin{minipage}{\textwidth}\footnotesize Each regression of Tables 3--4 is re-estimated once for every country in its sample, leaving that country out (about 150 runs for All PEPFAR, 90 for COP, fewer when adjusted). Full sample: the coefficient in Tables 3--4 with the raw outcome. Share significant at 10\%: fraction of the leave-one-out runs in which the coefficient has $p<0.10$, for each outcome transformation. Range: smallest and largest coefficient across the leave-one-out runs (raw outcome). PEPFAR $\times$ Post: two-way fixed effects DiD with the 0/1 PEPFAR (or COP) dummy. HIV $\times$ PEPFAR $\times$ Post: the triple interaction with 2003 HIV prevalence, which also includes HIV $\times$ Post and PEPFAR $\times$ Post. Adj.: the 11 baseline (2003) covariates of Crown et al.\ (2023) interacted with Post. Country and year fixed effects; standard errors clustered by country. Countries without 2003 HIV prevalence (3 controls) are left out of every regression so that both treatments use the same countries.\end{minipage}
+\end{table}

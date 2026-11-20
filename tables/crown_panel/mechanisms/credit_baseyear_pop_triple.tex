@@ -1,0 +1,70 @@
+\begin{table}[htbp]
+\centering
+\small
+\caption{Credit channel per person of the base-year population: HIV prevalence (2003) $\times$ PEPFAR $\times$ Post}
+\label{tab:crown_mech_pop0_triple}
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{All PEPFAR sample} & \multicolumn{2}{c}{COP sample} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ & Unadj. & Adj. & Unadj. & Adj. \\
+ & (1) & (2) & (3) & (4) \\
+\midrule
+\multicolumn{5}{l}{\textbf{Panel A: FDI, net inflows (US\$ per base-year person)}} \\
+\multicolumn{5}{l}{\textit{All countries}} \\
+Raw & $-280.244^{***}$ & $-273.975^{***}$ & $-272.922^{***}$ & $-289.998^{***}$ \\
+ & (52.324) & (39.682) & (52.603) & (43.324) \\
+Winsorized & $-195.400^{***}$ & $-180.492^{***}$ & $-189.147^{***}$ & $-201.509^{***}$ \\
+ & (32.874) & (41.855) & (33.073) & (47.626) \\
+Winsorized, IHS & $0.515^{***}$ & $0.468^{**}$ & $0.528^{***}$ & $0.188$ \\
+ & (0.148) & (0.222) & (0.152) & (0.358) \\
+Countries & 148 & 104 & 89 & 58 \\
+\multicolumn{5}{l}{\textit{Excluding Equatorial Guinea}} \\
+Raw & $-248.854$ & $-90.863$ & $-239.935$ & $-182.005$ \\
+ & (363.034) & (264.481) & (364.633) & (248.068) \\
+Winsorized & $-210.124$ & $69.019$ & $-202.431$ & $3.392$ \\
+ & (210.904) & (288.173) & (211.827) & (294.995) \\
+Winsorized, IHS & $0.747$ & $1.124$ & $0.756$ & $1.222$ \\
+ & (0.845) & (1.488) & (0.850) & (1.476) \\
+Countries & 147 & 103 & 88 & 57 \\
+\midrule
+\multicolumn{5}{l}{\textbf{Panel B: Gross savings (US\$ per base-year person)}} \\
+\multicolumn{5}{l}{\textit{All countries}} \\
+Raw & $-316.930$ & $-44.517$ & $-295.531$ & $-2832.439^{*}$ \\
+ & (1686.516) & (2438.596) & (1702.582) & (1411.922) \\
+Winsorized & $-1029.708$ & $-987.201$ & $-1011.604$ & $-2846.343$ \\
+ & (1508.793) & (2039.219) & (1520.305) & (1770.706) \\
+Winsorized, IHS & $0.540$ & $3.275$ & $0.539$ & $1.341$ \\
+ & (1.245) & (2.842) & (1.261) & (2.810) \\
+Countries & 128 & 94 & 75 & 51 \\
+\multicolumn{5}{l}{\textit{Excluding Equatorial Guinea}} \\
+Raw & $-316.930$ & $-44.517$ & $-295.531$ & $-2832.439^{*}$ \\
+ & (1686.516) & (2438.596) & (1702.582) & (1411.922) \\
+Winsorized & $-1029.708$ & $-987.201$ & $-1011.604$ & $-2846.343$ \\
+ & (1508.793) & (2039.219) & (1520.305) & (1770.706) \\
+Winsorized, IHS & $0.540$ & $3.275$ & $0.539$ & $1.341$ \\
+ & (1.245) & (2.842) & (1.261) & (2.810) \\
+Countries & 128 & 94 & 75 & 51 \\
+\midrule
+\multicolumn{5}{l}{\textbf{Panel C: Gross fixed capital formation (US\$ per base-year person)}} \\
+\multicolumn{5}{l}{\textit{All countries}} \\
+Raw & $27.436$ & $-247.876$ & $49.599$ & $-678.041$ \\
+ & (1322.043) & (1100.571) & (1333.672) & (1355.049) \\
+Winsorized & $-328.677$ & $-382.445$ & $-307.381$ & $-540.283$ \\
+ & (1246.007) & (858.511) & (1256.614) & (976.857) \\
+Winsorized, IHS & $-0.011$ & $-0.478$ & $-0.020$ & $-0.580$ \\
+ & (0.537) & (0.779) & (0.541) & (0.892) \\
+Countries & 130 & 93 & 74 & 49 \\
+\multicolumn{5}{l}{\textit{Excluding Equatorial Guinea}} \\
+Raw & $28.086$ & $-244.173$ & $50.802$ & $-668.930$ \\
+ & (1322.071) & (1100.409) & (1333.820) & (1351.789) \\
+Winsorized & $-328.013$ & $-379.793$ & $-306.197$ & $-535.982$ \\
+ & (1246.001) & (858.562) & (1256.696) & (975.301) \\
+Winsorized, IHS & $-0.011$ & $-0.477$ & $-0.020$ & $-0.579$ \\
+ & (0.537) & (0.779) & (0.541) & (0.892) \\
+Countries & 129 & 92 & 73 & 48 \\
+\bottomrule
+\end{tabular}
+\par\vspace{4pt}
+\begin{minipage}{\textwidth}\footnotesize Each cell is the coefficient on HIV prevalence $\times$ PEPFAR $\times$ Post from a two-way fixed effects regression with country and year fixed effects that also includes HIV prevalence $\times$ Post and PEPFAR $\times$ Post; Post = 1 from 2004. HIV prevalence is among ages 15--49 in 2003; PEPFAR is the 0/1 group dummy (All PEPFAR or COP, by column). Adjusted columns add the other 10 baseline (2003) covariates of Crown et al.\ (2023), each interacted with Post. Outcomes are in constant 2022 US\$ per person of the country's 1990 population so the denominator is fixed for each country and cannot respond to PEPFAR. Base year: 1990, or the first later year with data if before 2004 (countries whose series starts in 2004 or later are dropped). Numerators from the World Bank WDI, in constant 2022 US\$ (US GDP deflator). Winsorized: values outside the 1st--99th percentiles of the full panel set to those percentiles. IHS: $\sinh^{-1}(w)$ of the winsorized value. The second sub-panel of each outcome drops Equatorial Guinea, the only control with 2003 HIV prevalence above 1\% (3.8\%). Sample 1990--2022; controls are the 64 comparison countries valid through 2022. Standard errors clustered by country in parentheses. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.\end{minipage}
+\end{table}
