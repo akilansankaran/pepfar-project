@@ -52,10 +52,10 @@ p_len <- 40   # generic lenacapavir PrEP, Dr. Reddy's / Unitaid / CHAI price for
               # (FDA tentative approval Nov 2, 2026); US list price is $28,218
 
 # ASSUMPTIONS (no source yet)
-p_ali        <- 40    # alimatravir price: placeholder at the lenacapavir price; varied below
+p_ali        <- 3     # alimatravir price: production-cost estimate, Hill et al. (AIDS 2026); varied below
 ali_launch   <- 2029  # first year of alimatravir supply (Phase 3 readout expected 2027)
 ali_share    <- 0.5   # share of PrEP users on alimatravir once it is available
-p_ali_grid   <- c(20, 40, 60, 100)   # sensitivity on alimatravir's price
+p_ali_grid   <- c(3, 10, 20, 40)   # sensitivity on alimatravir's price
 
 # Optional delivery costs per person-year (0 = drugs only, the minimum the notes ask for)
 deliv_treat <- 0
@@ -139,7 +139,7 @@ p_cost <- ac |>
   scale_fill_manual(values = c("Treatment (TLD)" = pal[1], "PrEP" = pal[2])) +
   labs(title = "Annual drug cost of treating everyone with HIV and 20 million people on PrEP",
        subtitle = paste0("Dynamic path; drug prices only. Alimatravir from ", ali_launch, " at $", p_ali,
-                         " (placeholder) for ", 100 * ali_share, "% of PrEP users."),
+                         " (estimated production cost) for ", 100 * ali_share, "% of PrEP users."),
        x = NULL, y = "US$ billion per year") +
   theme_es
 save_both(p_cost, "annual_drug_cost", 9, 4.5)
@@ -183,13 +183,13 @@ write_tex_table(
     "US\\$ billion, drug prices only (current dollars, no inflation). Treatment: everyone living with HIV on",
     paste0("generic TLD at \\$", p_tld, " per person-year. PrEP: ", prep_need / 1e6, " million people (UNAIDS) on generic"),
     paste0("lenacapavir at \\$", p_len, "; in the second scenario ", 100 * ali_share, "\\% switch to alimatravir from ",
-           ali_launch, " at a placeholder \\$", p_ali, ","),
-    "with no price set yet. Static: 2025 numbers held constant (41.0 million people with HIV). Dynamic:",
+           ali_launch, " at \\$", p_ali, ", the estimated cost of production (Hill et al., AIDS 2026);"),
+    "Merck has not announced a price. Static: 2025 numbers held constant (41.0 million people with HIV). Dynamic:",
     "new infections fall linearly from 1.2 million (2025) to the 200,000 Fast-Track target in 2030, and the",
     paste0("2025 AIDS death rate among people with HIV is held constant; infections fall below deaths in ",
            ifelse(is.finite(end_year), end_year, "no year of the horizon"), "."),
     "Delivery costs (testing, visits, supply chain) are excluded, so these are lower bounds."),
-  align = "lcccccc", resize = FALSE)
+  align = "lcccccc", resize = TRUE)
 
 # =====================================================
 # 5. Console summary

@@ -178,6 +178,6 @@ write_tex_table(
     "all PEPFAR dollars. Crediting all deaths averted to the targeted program makes its cost per death a lower",
     "bound; dividing by all PEPFAR dollars gives an upper bound.",
     if (is.null(shares)) "NOTE: shares file missing, so both rows use all PEPFAR dollars." else ""),
-  align = "lccc", resize = FALSE)
+  align = "lccc", resize = TRUE)
 
 cat("\nDone. Output in", ce_dir, "\n")
