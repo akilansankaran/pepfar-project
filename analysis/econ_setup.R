@@ -184,6 +184,33 @@ triple_parts <- function(m) {
     slope_treated = b[["hiv_post"]] + b[["hiv_treat_post"]], slope_treated_se = s_se)
 }
 
+# Credit-channel outcomes with fixed base-year denominators (credit_baseyear_triple.R,
+# credit_jackknife_timing.R). Base year: each country's first year with data, 1990 for
+# almost all, if before 2004 (later starts would already reflect PEPFAR). mech is
+# data/intermediate/wdi_mechanisms_1990_2022.csv. Returns the panel with the six outcomes
+# added and the base values as attribute "bases".
+add_baseyear_credit <- function(panel, mech) {
+  base <- panel |>
+    group_by(iso3c) |>
+    summarise(gdp_base_year = suppressWarnings(min(year[!is.na(gdp)])),
+              gdp_base      = gdp[year == gdp_base_year][1],
+              pop_base_year = suppressWarnings(min(year[!is.na(pop_total)])),
+              pop_base      = pop_total[year == pop_base_year][1], .groups = "drop") |>
+    mutate(gdp_base = if_else(gdp_base_year < 2004, gdp_base, NA_real_),
+           pop_base = if_else(pop_base_year < 2004, pop_base, NA_real_))
+  out <- panel |>
+    left_join(mech, by = c("iso3c", "year")) |>
+    left_join(select(base, iso3c, gdp_base, pop_base), by = "iso3c") |>
+    mutate(fdi_gdp0  = fdi_pct_gdp     * gdp / gdp_base,
+           dsav_gdp0 = savings_pct_gdp * gdp / gdp_base,
+           gfcf_gdp0 = gfcf_pct_gdp    * gdp / gdp_base,
+           fdi_pop0  = fdi_pc          * pop_total / pop_base,
+           gsav_pop0 = gross_sav_pc    * pop_total / pop_base,
+           gfcf_pop0 = gfcf_pc         * pop_total / pop_base)
+  attr(out, "bases") <- base
+  out
+}
+
 # Treatment versions for run_twfe_post, with LaTeX labels
 treatments <- c(treat       = "PEPFAR group $\\times$ Post",
                 bl_hiv_prev = "HIV prevalence 2003 $\\times$ Post")

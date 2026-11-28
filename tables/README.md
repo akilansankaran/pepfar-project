@@ -14,6 +14,7 @@ tables/
 │   ├── jackknife/                  leave-one-country-out runs of the growth tables: summary table + matrix figures ← analysis/replication/jackknife_growth.R (Anthony)
 │   └── mechanisms/                 FDI, saving and investment, same TWFE spec          ← analysis/mechanisms/fdi_panel.R (Anthony)
 │                                   credit_baseyear_*: denominators fixed at base-year (1990) GDP / population ← analysis/mechanisms/credit_baseyear_triple.R (Anthony)
+│                                   credit_followups/: jackknife of the credit triple, timing by period, fiscal outcomes ← analysis/mechanisms/credit_jackknife_timing.R (Anthony)
 │                                   savings_levels/totals_triple: gross savings + GFCF per person and in total, triple interaction ← analysis/mechanisms/savings_levels_triple.R (Anthony)
 ├── crown_event_studies/            Crown economic outcomes, year-by-year
 │   ├── adjusted/                   adjusted event studies: tex/ figures/ csv/  ← analysis/parallel_trends/event_study_econ_adjusted.R (Anthony)
@@ -84,4 +85,12 @@ for the jackknife and the base-year credit channel:
 \input{crown_panel/jackknife/jackknife_figures}
 \input{crown_panel/mechanisms/credit_baseyear_gdp_triple}
 \input{crown_panel/mechanisms/credit_baseyear_pop_triple}
+```
+
+for the credit-channel follow-ups (jackknife, timing, fiscal outcomes):
+
+```latex
+\input{crown_panel/mechanisms/credit_followups/credit_jackknife}
+\input{crown_panel/mechanisms/credit_followups/credit_timing}
+\input{crown_panel/mechanisms/credit_followups/fiscal_outcomes}
 ```
