@@ -42,26 +42,9 @@ dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 
 mech <- read_csv("data/intermediate/wdi_mechanisms_1990_2022.csv", show_col_types = FALSE)
 
-# Each country's base-year GDP and population: first year with data, if before 2004
-base <- panel |>
-  group_by(iso3c) |>
-  summarise(gdp_base_year = suppressWarnings(min(year[!is.na(gdp)])),
-            gdp_base      = gdp[year == gdp_base_year][1],
-            pop_base_year = suppressWarnings(min(year[!is.na(pop_total)])),
-            pop_base      = pop_total[year == pop_base_year][1], .groups = "drop") |>
-  mutate(gdp_base = if_else(gdp_base_year < 2004, gdp_base, NA_real_),
-         pop_base = if_else(pop_base_year < 2004, pop_base, NA_real_))
-write_csv(base, file.path(out_dir, "credit_baseyear_bases.csv"))
-
-panel_m <- panel |>
-  left_join(mech, by = c("iso3c", "year")) |>
-  left_join(select(base, iso3c, gdp_base, pop_base), by = "iso3c") |>
-  mutate(fdi_gdp0  = fdi_pct_gdp     * gdp / gdp_base,
-         dsav_gdp0 = savings_pct_gdp * gdp / gdp_base,
-         gfcf_gdp0 = gfcf_pct_gdp    * gdp / gdp_base,
-         fdi_pop0  = fdi_pc          * pop_total / pop_base,
-         gsav_pop0 = gross_sav_pc    * pop_total / pop_base,
-         gfcf_pop0 = gfcf_pc         * pop_total / pop_base)
+# Each country's base-year GDP and population, and the six outcomes (econ_setup.R)
+panel_m <- add_baseyear_credit(panel, mech)
+write_csv(attr(panel_m, "bases"), file.path(out_dir, "credit_baseyear_bases.csv"))
 
 tables <- list(
   gdp0 = list(file = "credit_baseyear_gdp_triple", label = "tab:crown_mech_gdp0_triple",
